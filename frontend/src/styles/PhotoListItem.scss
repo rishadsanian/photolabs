@@ -6,6 +6,8 @@
   border-style: solid;
   border-radius: 8px;
   max-width: fit-content;
+  display:flex;
+  flex-direction: column;
 }
 
 .photo-list__image {
@@ -36,7 +38,7 @@
   display: flex;
 }
 
-.photo-list__user-info {
+.hoto-list__user-info {
   margin-top: 5px;
   font-weight: 700;
   font-size: 12px;
