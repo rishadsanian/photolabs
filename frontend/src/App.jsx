@@ -11,6 +11,9 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Note: Rendering a single component to build components in isolation
-const App = () => <div className="App">{photos}</div>;
+const App = () => <div className="App">
+  <ul className="photo-list">{photos}
+  </ul>
+  </div>
 
 export default App;

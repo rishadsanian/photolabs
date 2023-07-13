@@ -1,17 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "../styles/PhotoListItem.scss";
+import PhotoFavButton from "./PhotoFavButton";
+
+
 
 const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
   // const { id, imageSource, profile, username, location } = props;
   // const photoItem = {id: {id, imageSource, profile, username, location}}
 
+  // const [favButtonClassName, setFavButtonClassName] = useState("photo-list__fav-icon");
+
+  // const handleClick = () => {
+  //   console.log("clicked");
+  //   setFavButtonClassName((favButtonClassName) => {
+
+  //     favButtonClassName === "photo-list__fav-icon"
+  //       ? "photo-list__fav-icon-svg"
+  //       : "photo-list__fav-icon"
+  //     }
+
+
+  //   );
+  // };
+
+
   return (
     <li key={id} className="photo-list__item">
-      <img src={imageSource} className="photo-list__image" />
-      <footer>
-        <img src={profile} />
-        <section className="photo-list__user-profile">
+      <PhotoFavButton/>
+      <img src={imageSource} className="photo-list__image"></img>
+      <footer className="photo-list__footer">
+        <img src={profile} className="photo-list__user-profile" />
+        <section className="photo-list__user-details">
           <p className="photo-list__user-info">{username}</p>
           <p className="photo-list__user-location ">
             {location.city}, {location.country}
