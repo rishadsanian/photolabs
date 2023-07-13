@@ -1,5 +1,8 @@
 .fav-badge {
   position: relative;
+  display: flex;
+  align-items: center;
+  // cursor: pointer;
 }
 
 .fav-badge__count { 

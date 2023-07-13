@@ -5,8 +5,9 @@ import React from "react";
 // import PhotoListItem from "./components/PhotoListItem";
 // import TopicListItem from  "./components/TopicListItem"
 // import TopicList from "./components/TopicList";
-import PhotoList from "./components/PhotoList";
-import TopNavigation from "./components/TopNavigationBar";
+// import PhotoList from "./components/PhotoList";
+// import TopNavigation from "./components/TopNavigationBar";
+import HomeRoute from "./components/HomeRoute";
 
 // -------------------------STYLES IMPORT---------------------------//
 import "./App.scss";
@@ -16,8 +17,7 @@ import "./App.scss";
 // Note: Rendering a single component to build components in isolation
 const App = () => (
   <div className="App">
-    <TopNavigation/>
-    <PhotoList />
+    <HomeRoute />
   </div>
 );
 

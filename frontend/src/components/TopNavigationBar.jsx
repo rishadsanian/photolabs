@@ -5,7 +5,7 @@ import "../styles/TopNavigationBar.scss";
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
 
-const TopNavigation = () => {
+const TopNavigation = (props) => {
   return (
     <div className="top-nav-bar">
       <div className="top-nav-bar__left">
@@ -13,7 +13,7 @@ const TopNavigation = () => {
       </div>
 
       <div className="top-nav-bar__right">
-        <TopicList />
+        <TopicList topics={props.topics} />
         <FavBadge />
       </div>
     </div>
