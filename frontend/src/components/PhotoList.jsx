@@ -3,25 +3,25 @@ import React from "react";
 import "../styles/PhotoList.scss";
 import PhotoListItem from "./PhotoListItem";
 
+const PhotoList = ({ photos }) => {
 
-const PhotoList = ( photos ) => {
 
-  // const item = photos.map((photo) => ({
-  //   key: photo.id,
-  //   id: photo.id,
-  //   imageSource: photo.urls.regular,
-  //   profile: photo.user.profile,
-  //   username: photo.user.username,
-  //   location: photo.location,
-  //   currentUserLike: false
-  // }));
+  //Make an array with photolistitem and photo properties per index
+  const items = photos.map((photo) => (
+    <PhotoListItem
+      key={photo.id}
+      id={photo.id}
+      imageSource={photo.urls.regular}
+      profile={photo.user.profile}
+      username={photo.user.username}
+      location={photo.location}
+      // currentUserLike: false
+    />
+  ));
+  console.log(items);
 
-return(
-
-  <ul className="photo-list">
-    {/* <PhotoListItem {...photos}/> */}
-  </ul>
-  )
+  //display the array
+  return <ul className="photo-list">{items}</ul>;
 };
 
 PhotoList.defaultProps = {

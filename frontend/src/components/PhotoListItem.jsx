@@ -11,18 +11,6 @@ const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
 
   // const [favButtonClassName, setFavButtonClassName] = useState("photo-list__fav-icon");
 
-  // const handleClick = () => {
-  //   console.log("clicked");
-  //   setFavButtonClassName((favButtonClassName) => {
-
-  //     favButtonClassName === "photo-list__fav-icon"
-  //       ? "photo-list__fav-icon-svg"
-  //       : "photo-list__fav-icon"
-  //     }
-
-
-  //   );
-  // };
 
 
   return (
@@ -41,6 +29,7 @@ const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
     </li>
   );
 };
+
 
 PhotoListItem.defaultProps = {
   id: "1",
