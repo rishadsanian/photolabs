@@ -6,13 +6,7 @@ import PhotoFavButton from "./PhotoFavButton";
 
 
 const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
-  // const { id, imageSource, profile, username, location } = props;
-  // const photoItem = {id: {id, imageSource, profile, username, location}}
-
-  // const [favButtonClassName, setFavButtonClassName] = useState("photo-list__fav-icon");
-
-
-
+ 
   return (
     <li key={id} className="photo-list__item">
       <PhotoFavButton/>

@@ -7,7 +7,7 @@ const PhotoList = ({ photos }) => {
 
 
   //Make an array with photolistitem and photo properties per index
-  const items = photos.map((photo) => (
+  const photoItems = photos.map((photo) => (
     <PhotoListItem
       key={photo.id}
       id={photo.id}
@@ -18,10 +18,10 @@ const PhotoList = ({ photos }) => {
       // currentUserLike: false
     />
   ));
-  console.log(items);
+  console.log(photoItems);
 
   //display the array
-  return <ul className="photo-list">{items}</ul>;
+  return <ul className="photo-list">{photoItems}</ul>;
 };
 
 PhotoList.defaultProps = {

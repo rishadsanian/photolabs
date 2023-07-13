@@ -8,7 +8,10 @@
   max-width: fit-content;
   display: flex;
   flex-direction: column;
-
+  
+  &:hover {
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+  }
   .photo-list__image {
     user-select: none;
     width: 300px;
