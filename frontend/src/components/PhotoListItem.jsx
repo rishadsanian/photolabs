@@ -4,7 +4,7 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({ photo, handleFavs }) => {
-  //destructure
+  //destructure photo into variables needed for rendering
   const id = photo.id;
   const imageSource = photo.urls.regular;
   const profile = photo.user.profile;
