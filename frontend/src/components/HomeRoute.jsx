@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import "../styles/HomeRoute.scss";
+import "../styles/HomeRoute.scss"; //style
+//components
 import TopNavigationBar from "./TopNavigationBar";
 import PhotoList from "./PhotoList";
-// import photos from "../mocks/photos";
-// import topics from "../mocks/topics";
 
-// export const favPhotos = [];
-
-const HomeRoute = ({photos, topics}) => {
+const HomeRoute = ({ photos, topics }) => {
   const [favPhotos, setFavPhotos] = useState([]); //set initial to empty array
-  console.log(favPhotos);
+  
+  
+  //fav notification
+  const isFavPhotoExist = () => {
+    return (favPhotos.length>0);
+  };
 
-  //function to add or remove from favourites based on selected status
+  console.log(favPhotos);
+  console.log(isFavPhotoExist(favPhotos));
+
+  //add or remove from favourites based on selected status to be passed down photolist->photoitem
   const handleFavs = (photo, selected) => {
     //setting or removing will depend on state of previous state to previous value(initial value)
     !selected
@@ -21,9 +26,8 @@ const HomeRoute = ({photos, topics}) => {
 
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} />
+      <TopNavigationBar topics={topics} isFavPhotoExist={isFavPhotoExist}/>
       <PhotoList photos={photos} handleFavs={handleFavs} />
-      {/* <PhotoList photos={photos} favPhotos={favPhotos} /> */}
     </div>
   );
 };

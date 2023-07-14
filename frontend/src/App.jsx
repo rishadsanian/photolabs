@@ -1,6 +1,5 @@
 import React from "react";
 
-
 // --------------------------DATA IMPORT-------------------------//
 
 import photos from "./mocks/photos";

@@ -16,9 +16,9 @@ const PhotoListItem = ({ photo, handleFavs }) => {
   const onClick = () => {
     setSelected(!selected);
     handleFavs(photo, selected);
-  
   };
 
+  //display one photo item
   return (
     <li key={id} className="photo-list__item">
       <PhotoFavButton selected={selected} onClick={onClick} />
