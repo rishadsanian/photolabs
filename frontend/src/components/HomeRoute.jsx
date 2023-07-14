@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import "../styles/HomeRoute.scss";
 import TopNavigationBar from "./TopNavigationBar";
 import PhotoList from "./PhotoList";
-import photos from "../mocks/photos";
-import topics from "../mocks/topics";
+// import photos from "../mocks/photos";
+// import topics from "../mocks/topics";
 
 // export const favPhotos = [];
 
-const HomeRoute = () => {
+const HomeRoute = ({photos, topics}) => {
   const [favPhotos, setFavPhotos] = useState([]); //set initial to empty array
   console.log(favPhotos);
 
   //function to add or remove from favourites based on selected status
   const handleFavs = (photo, selected) => {
-   
-
     //setting or removing will depend on state of previous state to previous value(initial value)
     !selected
       ? setFavPhotos([...favPhotos, photo])

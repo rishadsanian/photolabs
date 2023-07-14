@@ -1,12 +1,13 @@
 import React from "react";
 
+
+// --------------------------DATA IMPORT-------------------------//
+
+import photos from "./mocks/photos";
+import topics from "./mocks/topics";
+
 // ----------------------COMPONENTS IMPORT-------------------------//
 
-// import PhotoListItem from "./components/PhotoListItem";
-// import TopicListItem from  "./components/TopicListItem"
-// import TopicList from "./components/TopicList";
-// import PhotoList from "./components/PhotoList";
-// import TopNavigation from "./components/TopNavigationBar";
 import HomeRoute from "./components/HomeRoute";
 
 // -------------------------STYLES IMPORT---------------------------//
@@ -17,7 +18,7 @@ import "./App.scss";
 // Note: Rendering a single component to build components in isolation
 const App = () => (
   <div className="App">
-    <HomeRoute />
+    <HomeRoute topics={topics} photos={photos}/>
   </div>
 );
 
