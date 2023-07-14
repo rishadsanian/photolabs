@@ -13,7 +13,7 @@ const TopicList = ({ topics }) => {
       title={topic.title}
     />
   ));
-  console.log(topicItems);
+
 
   //display the array
   return <div className="top-nav-bar__topic-list">{topicItems}</div>;

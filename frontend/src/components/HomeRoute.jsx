@@ -13,15 +13,13 @@ const HomeRoute = () => {
 
   //function to add or remove from favourites based on selected status
   const handleFavs = (photo, selected) => {
-    console.log(photo, selected);
+   
 
     //setting or removing will depend on state of previous state to previous value(initial value)
     !selected
       ? setFavPhotos([...favPhotos, photo])
       : setFavPhotos(favPhotos.filter((favPhoto) => favPhoto.id !== photo.id));
-
   };
-
 
   return (
     <div className="home-route">

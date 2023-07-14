@@ -12,7 +12,7 @@ const PhotoList = ({ photos, handleFavs }) => {
       photo={photo}
     />
   ));
-  console.log(photoItems);
+ 
 
   //display the array
   return <ul className="photo-list">{photoItems}</ul>;
