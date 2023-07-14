@@ -4,12 +4,30 @@ import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
 
+const PhotoListItem = ({ photo, handleFavs }) => {
+  const id = photo.id;
+  const imageSource = photo.urls.regular;
+  const profile = photo.user.profile;
+  const username = photo.user.username;
+  const location = photo.location;
 
-const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
- 
+//State for selecting/unselecting fav button
+  const [selected, setSelected] = useState(false);
+  const onClick = () => {
+    setSelected(!selected);
+    handleFavs(photo, selected);
+    console.log("selected:", selected);
+  };
+
+
   return (
     <li key={id} className="photo-list__item">
-      <PhotoFavButton/>
+      <PhotoFavButton
+        photo={photo}
+        selected={selected}
+        onClick={onClick}
+        handleFavs={handleFavs}
+      />
       <img src={imageSource} className="photo-list__image"></img>
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />
@@ -22,18 +40,6 @@ const PhotoListItem = ({ id, imageSource, profile, username, location }) => {
       </footer>
     </li>
   );
-};
-
-
-PhotoListItem.defaultProps = {
-  id: "1",
-  location: {
-    city: "Montreal",
-    country: "Canada",
-  },
-  imageSource: `${process.env.PUBLIC_URL}/Image-1-Regular.jpeg`,
-  username: "Joe Example",
-  profile: `${process.env.PUBLIC_URL}/profile-1.jpg`,
 };
 
 export default PhotoListItem;
