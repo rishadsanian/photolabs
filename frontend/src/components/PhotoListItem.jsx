@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, handleFavs }) => {
+const PhotoListItem = ({ photo, handleFavs, toggleModal }) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
   const imageSource = photo.urls.regular;
@@ -18,11 +18,21 @@ const PhotoListItem = ({ photo, handleFavs }) => {
     handleFavs(photo, selected);
   };
 
+  // const onImageClick = (event) => {
+  //   console.log(toggleModal);
+  //   toggleModal(event.target);
+  // };
+
+
   //display one photo item
   return (
     <li key={id} className="photo-list__item">
       <PhotoFavButton selected={selected} onClick={onClick} />
-      <img src={imageSource} className="photo-list__image"></img>
+      <img
+        src={imageSource}
+        className="photo-list__image"
+        onClick={toggleModal}
+      ></img>
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />
         <section className="photo-list__user-details">

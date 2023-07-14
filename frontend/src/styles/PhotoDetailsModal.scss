@@ -11,6 +11,10 @@
   border-radius: 12px;
 }
 
+.photo-details-modal:focus {
+  outline: none; 
+}
+
 .photo-details-modal__close-button {
   background-color: white;
   border: none;
@@ -22,6 +26,7 @@
   cursor: pointer;
   margin-left: 16px;
   margin-top: 16px;
+  cursor: pointer;
 }
 
 .photo-details-modal__images {
