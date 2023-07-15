@@ -3,7 +3,15 @@ import React, { useState } from "react";
 import "../styles/PhotoListItem.scss";
 import PhotoFavButton from "./PhotoFavButton";
 
-const PhotoListItem = ({ photo, handleFavs, toggleModal }) => {
+const PhotoListItem = ({
+  photo,
+  handleFavs,
+  handlePhotoClick,
+  isFavourite,
+  favPhotos,
+  selected,
+  setSelected
+}) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
   const imageSource = photo.urls.regular;
@@ -11,27 +19,34 @@ const PhotoListItem = ({ photo, handleFavs, toggleModal }) => {
   const username = photo.user.username;
   const location = photo.location;
 
-  //State for selecting/unselecting fav button
-  const [selected, setSelected] = useState(false);
+  // State for selecting/unselecting fav button
+  
+  // const [selected, setSelected] = useState(isFavourite(id));
+  // const [selected, setSelected] = useState(false);
   const onClick = () => {
     setSelected(!selected);
     handleFavs(photo, selected);
+
+    // console.log('photolistItem is favourite',isFavourite);
+    // console.log('photoListItem is favourite executed',isFavourite(id));
+    // console.log('photolistItem selected',selected);
   };
 
-  // const onImageClick = (event) => {
-  //   console.log(toggleModal);
-  //   toggleModal(event.target);
-  // };
+  // console.log('photoListItem is favourite executed',isFavourite(id));
+  // console.log('photolistItem selected',selected);
 
+  const onImageClick = () => {
+    handlePhotoClick(id, selected, photo);
+  };
 
   //display one photo item
   return (
     <li key={id} className="photo-list__item">
-      <PhotoFavButton selected={selected} onClick={onClick} />
+      <PhotoFavButton selected={selected} onClick={onClick} isFavourite={isFavourite} id={id}/>
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={toggleModal}
+        onClick={onImageClick}
       ></img>
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />
