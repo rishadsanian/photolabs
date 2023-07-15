@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
 // -----------------------------DATA IMPORT--------------------------------//
 
@@ -20,6 +20,9 @@ const App = () => {
 
   //Favourite Photos
   const [favPhotos, setFavPhotos] = useState([]);
+  const [photoId, setPhotoId] = useState(null);
+  const [selectedPhoto, setSelectedPhoto] = useState({});
+  const [newPhotos, setNewPhotos] = useState(photos);
 
   //Modal - Passed down to PhotoListItem.jsx
   const [modal, setModal] = useState({
@@ -32,8 +35,7 @@ const App = () => {
   const [selected, setSelected] = useState(false);
 
   //------------------------ FUNCTIONS-------------------------------------//
-  
-  
+
   //Favourite Photos
 
   //fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar
@@ -41,89 +43,73 @@ const App = () => {
     return favPhotos.length > 0;
   };
 
-  //add or remove from favourites function which will be performed on click based on selected status to be passed down photolist->photoitem
-  const handleFavs = (photo, selected) => {
-    !selected
-      ? setFavPhotos([...favPhotos, photo]) //if not already on list add to list
-      : setFavPhotos(favPhotos.filter((favPhoto) => favPhoto.id !== photo.id)); //if already on list, remove from list
-  };
-
-  const isFavourite = (id) => {
-    return favPhotos.some(photo => photo.id === id);
-  };
- 
-  // const [selected, setSelected] = useState((false));
-  // const onClick = () => {
-  //   setSelected(!selected);
-  //   handleFavs(photo, selected);
+  // const isFavourite = (id) => {
+  //   return favPhotos.some((photo) => photo.id === id);
   // };
-  //---------------------------------------------------------------------------
 
   //Modal
-  const toggleModal = () => {
+  const toggleModal = (id = undefined) => {
+    if (id) {
+      const photo = [...newPhotos].find(photo => photo.id === id)
+      setSelectedPhoto(photo)
+    }
     setModal((prevModal) => ({
       ...prevModal,
       isOpen: !prevModal.isOpen,
     }));
-
-    // console.log("is modal open:", modal.isOpen);
-    // console.log(modal);
   };
-
-
-  const handlePhotoClick = (id, selected, photo) => {
-   if (!modal.isOpen) {toggleModal()};
-    setModal((prev) => ({
-      ...prev,
-      id: id,
-      selected: selected,
-      photo: photo,
-    }));
-  };
-  
-  console.log('modal.photo: ',modal.photo);
   const getRelatedPhotos = () => {
     const relatedPhotos = [];
-    for (let photoKey in modal.photo.similar_photos) {
-      const photo = modal.photo.similar_photos[photoKey];
-      relatedPhotos.push(photo);
-  }
-  // console.log('related photos: ', relatedPhotos);
-  return relatedPhotos;
-};
-// -------------------------- logs-------------------------------------//
-  console.log("Favourite Photos:", favPhotos);
-  // console.log("modal", modal);
+    if (Object.keys(selectedPhoto).length > 0) {
+      for (let photoKey in selectedPhoto.similar_photos) {
+        const photo = selectedPhoto.similar_photos[photoKey];
+        relatedPhotos.push(photo);
+      }
+    }
+    return relatedPhotos;
+  };
 
-  // -------------------------- Render-------------------------------------//
+
+  const handleFavPhotoClick = (photo_id) => {
+    const clonedPhotos = [...newPhotos];
+    const selectedPhoto = updateSelectedPhoto(photo_id, clonedPhotos);
+    selectedPhoto.selected = !selectedPhoto.selected;
+    setSelectedPhoto(selectedPhoto);
+    const favedPhotos = clonedPhotos.filter((photo) => !!photo.selected)
+    setFavPhotos(favedPhotos)
+    setNewPhotos(clonedPhotos);
+  };
+
+  function updateSelectedPhoto(photo_id, clonedPhotos) {
+    let selectedPhoto = {}
+    clonedPhotos.forEach((photo) => {
+      if (photo.id === photo_id) {
+        selectedPhoto = photo
+      }
+    });
+    return selectedPhoto
+  }
 
   return (
     <div className="App">
       <HomeRoute
         topics={topics}
-        photos={photos}
+        photos={newPhotos}
         isFavPhotoExist={isFavPhotoExist}
-        handleFavs={handleFavs}
-        handlePhotoClick={handlePhotoClick}
-        // onClick={onClick}
+        handleOnClick={(id) => handleFavPhotoClick(id)}
         selected={selected}
         setSelected={setSelected}
-        // favPhotos={favPhotos}
-        isFavourite={isFavourite}
-        />
+        handleOnImageClick={(id) => toggleModal(id)}
+      />
       {modal.isOpen && (
         <PhotoDetailsModal
           toggleModal={toggleModal}
           modal={modal}
           photo={modal.photo}
-          handleFavs={handleFavs}
-          // onClick={onClick}
-          // selected={selected}
-          // favPhotos={favPhotos}
-          isFavourite={isFavourite}
-          handlePhotoClick={handlePhotoClick}
+          filteredPhoto={selectedPhoto}
           getRelatedPhotos={getRelatedPhotos}
-          photos={photos}
+          photos={newPhotos}
+          handleOnClick={(id) => handleFavPhotoClick(id)}
         />
       )}
     </div>

@@ -10,7 +10,9 @@ const PhotoListItem = ({
   isFavourite,
   favPhotos,
   selected,
-  setSelected
+  setSelected,
+  handleOnClick,
+  handleOnImageClick
 }) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
@@ -23,14 +25,16 @@ const PhotoListItem = ({
   
   // const [selected, setSelected] = useState(isFavourite(id));
   // const [selected, setSelected] = useState(false);
-  const onClick = () => {
-    setSelected(!selected);
-    handleFavs(photo, selected);
+
+
+  // const onClick = () => {
+  //   setSelected(!selected);
+  //   handleFavs(photo, selected);
 
     // console.log('photolistItem is favourite',isFavourite);
     // console.log('photoListItem is favourite executed',isFavourite(id));
     // console.log('photolistItem selected',selected);
-  };
+  // };
 
   // console.log('photoListItem is favourite executed',isFavourite(id));
   // console.log('photolistItem selected',selected);
@@ -42,12 +46,12 @@ const PhotoListItem = ({
   //display one photo item
   return (
     <li key={id} className="photo-list__item">
-      <PhotoFavButton selected={selected} onClick={onClick} isFavourite={isFavourite} id={id}/>
+      <PhotoFavButton selected={photo.selected} onClick={() => handleOnClick(id)} isFavourite={isFavourite} id={id}/>
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={onImageClick}
-      ></img>
+        onClick={() => handleOnImageClick(id)}
+      />
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />
         <section className="photo-list__user-details">

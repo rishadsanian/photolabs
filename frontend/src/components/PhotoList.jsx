@@ -7,11 +7,12 @@ const PhotoList = ({
   photos,
   handleFavs,
   handlePhotoClick,
-  onClick,
+  handleOnClick,
   selected,
   setSelected,
   isFavourite,
-  favPhotos
+  favPhotos,
+  handleOnImageClick
 }) => {
   //Make an array with photolistitem and photo properties per index
   const photoItems = photos.map((photo) => (
@@ -22,9 +23,10 @@ const PhotoList = ({
       handlePhotoClick={handlePhotoClick}
       isFavourite={isFavourite}
       favPhotos={favPhotos}
-      // onClick={onClick}
+      handleOnClick={(id) => handleOnClick(id)}
       selected={selected}
       setSelected={setSelected}
+      handleOnImageClick={(id) => handleOnImageClick(id)}
     />
   ));
 

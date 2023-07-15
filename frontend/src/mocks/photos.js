@@ -13,7 +13,8 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
+    selected: false
   }
 
   const photo2 = {
@@ -31,7 +32,8 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
+    selected: false
   }
 
   const photo3 = {
@@ -49,7 +51,8 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
+    selected: false
   }
 
   const photo4 = {
@@ -62,6 +65,7 @@
       "full": `${process.env.PUBLIC_URL}/Image-4-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-4-Regular.jpg`
     },
+    selected: false,
     "user": {
       "id": "4",
       "updated_at": "2016-07-10T11:00:01-05:00",
@@ -77,6 +81,7 @@
       "city": "Vancouver",
       "country": "Canada"
     },
+    selected: false,
     "urls": {
       "full": `${process.env.PUBLIC_URL}/Image-5-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-5-Regular.jpg`
@@ -99,6 +104,7 @@
       "full": `${process.env.PUBLIC_URL}/Image-6-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-6-Regular.jpg`
     },
+    selected: false,
     "user": {
       "id": "6",
       "username": "exampleuser",
@@ -113,6 +119,7 @@
       "city": "Calgary",
       "country": "Canada"
     },
+    selected: false,
     "urls": {
       "full": `${process.env.PUBLIC_URL}/Image-7-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-7-Regular.jpg`
@@ -131,6 +138,7 @@
       "city": "Ottawa",
       "country": "Canada"
     },
+    selected: false,
     "urls": {
       "full": `${process.env.PUBLIC_URL}/Image-8-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-8-Regular.jpg`
@@ -149,6 +157,7 @@
       "city": "Nova Scotia",
       "country": "Canada"
     },
+    selected: false,
     "urls": {
       "full": `${process.env.PUBLIC_URL}/Image-9-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-9-Regular.jpg`
@@ -167,6 +176,7 @@
       "city": "Edmonton",
       "country": "Canada"
     },
+    selected: false,
     "urls": {
       "full": `${process.env.PUBLIC_URL}/Image-10-Full.jpg`,
       "regular": `${process.env.PUBLIC_URL}/Image-10-Regular.jpg`

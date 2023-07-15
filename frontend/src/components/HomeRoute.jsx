@@ -10,11 +10,12 @@ const HomeRoute = ({
   isFavPhotoExist,
   handleFavs,
   handlePhotoClick,
-  onClick,
+  handleOnClick,
   selected,
   setSelected,
   isFavourite,
   favPhotos,
+  handleOnImageClick
 }) => {
   //RENDER
   return (
@@ -26,9 +27,10 @@ const HomeRoute = ({
         handlePhotoClick={handlePhotoClick}
         isFavourite={isFavourite}
         favPhotos={favPhotos}
-        // onClick={onClick}
+        handleOnClick={(id) => handleOnClick(id)}
         selected={selected}
         setSelected={setSelected}
+        handleOnImageClick={(id) => handleOnImageClick(id)}
       />
     </div>
   );

@@ -24,12 +24,18 @@ const PhotoDetailsModal = ({
   // onClick,
   selected,
   setSelected,
+  filteredPhoto,
+  handleOnClick
 }) => {
-  const id = photo.id;
-  const imageSource = photo.urls.regular;
-  const profile = photo.user.profile;
-  const username = photo.user.username;
-  const location = photo.location;
+
+
+  console.log("31 => filteredPhoto", filteredPhoto)
+  const id = filteredPhoto?.id;
+  const imageSource = filteredPhoto?.urls?.regular;
+  const profile = filteredPhoto?.user?.profile;
+  const username = filteredPhoto?.user?.username;
+  const location = filteredPhoto?.location;
+
 
   const photos = getRelatedPhotos();
   const modalRef = useRef(null);
@@ -40,10 +46,10 @@ const PhotoDetailsModal = ({
     }
   }, []);
 
-  const onClick = () => {
-    setSelected(!selected);
-    handleFavs(photo, selected);
-  };
+  // const onClick = () => {
+  //   setSelected(!selected);
+  //   handleFavs(photo, selected);
+  // };
 
   return (
     <div className="photo-details-modal" tabIndex={0} ref={modalRef}>
@@ -84,10 +90,11 @@ const PhotoDetailsModal = ({
       <div className="photo-details-modal__content">
         <div className="photo-details-modal__image-wrapper">
           <PhotoFavButton
-            selected={selected}
-            onClick={onClick}
+            selected={filteredPhoto.selected}
+            onClick={() => handleOnClick(id)}
             className="photo-details-modal__fav-button"
           />
+          {filteredPhoto.selected}
           <img
             src={imageSource}
             className="photo-details-modal__image"
@@ -104,7 +111,7 @@ const PhotoDetailsModal = ({
           <section className="photo-details-modal__photographer-info">
             <p className="photo-details-modal__user-info">{username}</p>
             <p className="photo-details-modal__user-location">
-              {location.city}, {location.country}
+              {location?.city}, {location?.country}
             </p>
           </section>
         </div>
@@ -115,8 +122,15 @@ const PhotoDetailsModal = ({
           <PhotoList
             photos={photos}
             handleFavs={handleFavs}
-            handlePhotoClick={handlePhotoClick}
+            handlePhotoClick={handlePhotoClick} 
             getRelatedPhotos={getRelatedPhotos}
+
+            // isFavourite={isFavourite}
+            favPhotos={favPhotos}
+            handleOnClick={(id) => handleOnClick(id)}
+            selected={selected}
+            setSelected={setSelected}
+            handleOnImageClick={(id) => handleOnImageClick(id)}
           />
         </section>
       </div>
