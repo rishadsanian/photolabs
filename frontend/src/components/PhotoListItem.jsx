@@ -7,10 +7,10 @@ const PhotoListItem = ({
   photo,
   handleOnClick,
   handleOnImageClick,
-  modal
+  isFavourite,
+  // modal,
   // handleFavs,
   // handlePhotoClick,
-  // isFavourite,
   // favPhotos,
   // selected,
   // setSelected,
@@ -49,13 +49,13 @@ const PhotoListItem = ({
       <PhotoFavButton
         selected={photo.selected}
         onClick={() => handleOnClick(id)}
-        // isFavourite={isFavourite}
-        // id={id}
+        isFavourite={isFavourite}
+        id={id}
       />
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={() => {!modal.isOpen && handleOnImageClick(id)}}
+        onClick={() => {handleOnImageClick(id)}}
       />
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />

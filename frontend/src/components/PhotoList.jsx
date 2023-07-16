@@ -7,9 +7,8 @@ const PhotoList = ({
   photos,
   handleOnClick,
   handleOnImageClick,
-  modal
-
-  // isFavourite,
+  isFavourite,
+  // modal,
   // handleFavs,
   // handlePhotoClick,
   // selected,
@@ -23,8 +22,8 @@ const PhotoList = ({
       photo={photo}
       handleOnClick={(id) => handleOnClick(id)}
       handleOnImageClick={(id) => handleOnImageClick(id)}
-      modal={modal}
-      // isFavourite={isFavourite}
+      isFavourite={isFavourite}
+      // modal={modal}
       // handleFavs={handleFavs}
       // handlePhotoClick={handlePhotoClick}
       // favPhotos={favPhotos}

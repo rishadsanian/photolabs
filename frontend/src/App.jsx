@@ -43,11 +43,18 @@ const App = () => {
     return favPhotos.length > 0;
   };
 
-  // const isFavourite = (id) => {
-  //   return favPhotos.some((photo) => photo.id === id);
-  // };
+  const isFavourite = (id) => {
+    return favPhotos.some((photo) => photo.id === id);
+  };
 
   //Modal
+  const closeModal = () => {
+    setModal((prevModal) => ({
+      ...prevModal,
+      isOpen: !prevModal.isOpen,
+    }));
+  };
+
   const toggleModal = (id = undefined) => {
     if (id) {
       const photo = [...newPhotos].find((photo) => photo.id === id);
@@ -55,7 +62,7 @@ const App = () => {
     }
     setModal((prevModal) => ({
       ...prevModal,
-      isOpen: !prevModal.isOpen,
+      isOpen: true,
     }));
   };
 
@@ -99,13 +106,14 @@ const App = () => {
         isFavPhotoExist={isFavPhotoExist}
         handleOnClick={(id) => handleFavPhotoClick(id)}
         handleOnImageClick={(id) => toggleModal(id)}
-        modal={modal}
+        isFavourite={isFavourite}
+        // modal={modal}
         // selected={selected}
         // setSelected={setSelected}
       />
       {modal.isOpen && (
         <PhotoDetailsModal
-          toggleModal={toggleModal}
+          closeModal={closeModal}
           modal={modal}
           photo={modal.photo}
           filteredPhoto={selectedPhoto}
@@ -113,6 +121,7 @@ const App = () => {
           photos={newPhotos}
           handleOnClick={(id) => handleFavPhotoClick(id)}
           handleOnImageClick={(id) => toggleModal(id)}
+          isFavourite={isFavourite}
         />
       )}
     </div>

@@ -4,14 +4,6 @@ import "../styles/PhotoDetailsModal.scss";
 import PhotoList from "../components/PhotoList";
 import PhotoFavButton from "../components/PhotoFavButton";
 
-// photos={photos}
-// handleFavs={handleFavs}
-// handlePhotoClick={handlePhotoClick}
-// isFavourite={isFavourite}
-// favPhotos={favPhotos}
-// // onClick={onClick}
-// selected={selected}
-// setSelected={setSelected}
 
 const PhotoDetailsModal = ({
   handleOnClick,
@@ -19,11 +11,12 @@ const PhotoDetailsModal = ({
   toggleModal,
   getRelatedPhotos,
   handleOnImageClick,
-  modal,
+  isFavourite,
+  // modal,
+  closeModal
   // photo,
   // handleFavs,
   // handlePhotoClick,
-  // isFavourite,
   // onClick,
   // selected,
   // setSelected,
@@ -47,6 +40,10 @@ const PhotoDetailsModal = ({
     }
   }, []);
 
+  const handleRelatedImageClick = (id) => {
+    handleOnImageClick(id);
+    modalRef.current.scrollTo(0, 0);
+  };
   // const onClick = () => {
   //   setSelected(!selected);
   //   handleFavs(photo, selected);
@@ -57,7 +54,7 @@ const PhotoDetailsModal = ({
       <div className="photo-details-modal__header">
         <button
           className="photo-details-modal__close-button"
-          onClick={toggleModal}
+          onClick={closeModal}
         >
           <svg
             width="24"
@@ -93,6 +90,8 @@ const PhotoDetailsModal = ({
           <PhotoFavButton
             selected={filteredPhoto.selected}
             onClick={() => handleOnClick(id)}
+            isFavourite={isFavourite}
+            id={id}
             className="photo-details-modal__fav-button"
           />
           {filteredPhoto.selected}
@@ -123,8 +122,10 @@ const PhotoDetailsModal = ({
           <PhotoList
             photos={photos}
             handleOnClick={(id) => handleOnClick(id)}
-            handleOnImageClick={(id) => handleOnImageClick(id)}
-            modal={modal}
+            handleOnImageClick={handleRelatedImageClick}
+            isFavourite={isFavourite}
+            id={id}
+            // modal={modal}
             // handlePhotoClick={handlePhotoClick} 
             // handleFavs={handleFavs}
             // getRelatedPhotos={getRelatedPhotos}

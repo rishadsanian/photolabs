@@ -10,8 +10,8 @@ const HomeRoute = ({
   isFavPhotoExist,
   handleOnClick,
   handleOnImageClick,
-  modal
-  // isFavourite,
+  isFavourite,
+  // modal,
   // handleFavs,
   // handlePhotoClick,
   // selected,
@@ -26,8 +26,8 @@ const HomeRoute = ({
         photos={photos}
         handleOnClick={(id) => handleOnClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
-        modal = {modal}
-        // isFavourite={isFavourite}
+        isFavourite={isFavourite}
+        // modal = {modal}
         // handleFavs={handleFavs}
         // handlePhotoClick={handlePhotoClick}
         // favPhotos={favPhotos}
