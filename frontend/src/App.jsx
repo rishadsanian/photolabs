@@ -1,105 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-// -----------------------------DATA IMPORT--------------------------------//
+// --------------------------------STYLES IMPORT------------------------------//
+import "./App.scss";
 
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
-
-// ----------------------COMPONENTS/ROUTES IMPORT-------------------------//
+// ---------------------------------ROUTES IMPORT-------------------------//
 
 import HomeRoute from "./components/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
-// ----------------------------STYLES IMPORT-------------------------------//
-import "./App.scss";
+//====-----------------------------DATA IMPORT--------------------------------//
 
-//////////////////////////////// APP ///////////////////////////////////////
+import useApplicationData from "./hooks/useApplicationData";
+
+//-----------------------------------TO DO-----------------------------------//
+//todo close modal if clicked on background
+//set modal image max width and height
+
+//////////////////////////////////// APP ///////////////////////////////////////
 
 const App = () => {
-  //--------------------------- STATES-----------------------------------//
+  const {
+    state,
+    isFavPhotoExist,
+    isFavourite,
+    closeModal,
+    handleOnImageClick,
+    getRelatedPhotos,
+    handleFavButtonClick,
+    logFavPhotos,
+  } = useApplicationData();
 
-  //Favourite Photos
-  const [favPhotos, setFavPhotos] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState({});
-  const [newPhotos, setNewPhotos] = useState(photos);
+  //////////////////////////////////STATES//////////////////////////////////////
 
-  //Modal 
-  const [modal, setModal] = useState({ isOpen: false });
+  const { favPhotos, selectedPhoto, newPhotos, appTopics, modal } = state;
 
-  //------------------------ FUNCTIONS-------------------------------------//
+  ///////////////////////////////////LOGS///////////////////////////////////////
+  logFavPhotos();
 
-  //Favourite Photos
-
-  //fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar
-  const isFavPhotoExist = () => {
-    return favPhotos.length > 0;
-  };
-
-  //passed down to PhotoFavButton to fill it if image is in favPhotos
-  const isFavourite = (id) => {
-    return favPhotos.some((photo) => photo.id === id);
-  };
-
-  //Modal
-
-  //passed down to PhotoDetailsModal to close it
-  const closeModal = () => {
-    setModal((prevModal) => ({
-      ...prevModal,
-      isOpen: !prevModal.isOpen,
-    }));
-  };
-
-  //Sets and records the clicked photo as current and selected photo and opens the modal
-  const handleOnImageClick = (id) => {
-    if (id) {
-      const photo = [...newPhotos].find((photo) => photo.id === id);
-      setSelectedPhoto(photo);
-    }
-    setModal((prevModal) => ({
-      ...prevModal,
-      isOpen: true,
-    }));
-  };
-
-  //Gets related photos of selected photo
-  const getRelatedPhotos = () => {
-    const relatedPhotos = [];
-    if (Object.keys(selectedPhoto).length > 0) {
-      for (let photoKey in selectedPhoto.similar_photos) {
-        const photo = selectedPhoto.similar_photos[photoKey];
-        relatedPhotos.push(photo);
-      }
-    }
-    return relatedPhotos;
-  };
-
-  //Favourites
-  useEffect(() => {
-    console.log(favPhotos); // Display favPhotos array whenever it changes
-  }, [favPhotos]);
-
-  //When FavButton is clicked on a photo- photo object is saved to fav photos if not already saved, unsaves it if it is already saved
-  const handleFavButtonClick = (photoId) => {
-    setFavPhotos((prevFavPhotos) => {
-      const isPhotoFavourite = isFavourite(photoId);
-      if (isPhotoFavourite) {
-        return prevFavPhotos.filter((photo) => photo.id !== photoId);
-      } else {
-        const selectedPhoto = newPhotos.find((photo) => photo.id === photoId);
-        return selectedPhoto
-          ? [...prevFavPhotos, selectedPhoto]
-          : prevFavPhotos;
-      }
-    });
-  };
-
-  //Render
+  //////////////////////////////////Render//////////////////////////////////////
   return (
     <div className="App">
       <HomeRoute
         photos={newPhotos}
-        topics={topics}
+        topics={appTopics}
         isFavPhotoExist={isFavPhotoExist}
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
@@ -107,7 +50,7 @@ const App = () => {
       />
       {modal.isOpen && (
         <PhotoDetailsModal
-        handleFavButtonClick={(id) => handleFavButtonClick(id)}
+          handleFavButtonClick={(id) => handleFavButtonClick(id)}
           selectedPhoto={selectedPhoto}
           getRelatedPhotos={getRelatedPhotos}
           handleOnImageClick={(id) => handleOnImageClick(id)}
@@ -121,4 +64,4 @@ const App = () => {
 
 export default App;
 
-//--------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////

@@ -1,134 +1,61 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 
 // -----------------------------DATA IMPORT--------------------------------//
 
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
-
-// ----------------------COMPONENTS/ROUTES IMPORT---------------------------//
-
-import HomeRoute from "./components/HomeRoute";
-import PhotoDetailsModal from "./routes/PhotoDetailsModal";
-
-// --------------------------STYLES IMPORT------------------------------------//
-import "./App.scss";
-
-//-----------------------------Favphotos--------------------------------------//
-const [favPhotos, setFavPhotos] = useState([]);
-
-//fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar
-const isFavPhotoExist = () => {
-  return favPhotos.length > 0;
-};
-
-
-const handleFavButtonClick = (photo_id) => {
-  const clonedPhotos = [...newPhotos];
-  const selectedPhoto = updateSelectedPhoto(photo_id, clonedPhotos);
-  selectedPhoto.selected = !selectedPhoto.selected;
-  setSelectedPhoto(selectedPhoto);
-  const favedPhotos = clonedPhotos.filter((photo) => !!photo.selected)
-  setFavPhotos(favedPhotos)
-  setNewPhotos(clonedPhotos);
-};
-
-
-
+import photos from "../mocks/photos";
+import topics from "../mocks/topics";
 
 const useApplicationData = () => {
-  //Setting up favourite photos array
-  function favPhotoReducer(state, action) {
-    switch (action.type) {
-      case "TOGGLE":
-        if (!state.includes(action.id)) {
-          return [...state, action.id];
-        }
-        return state.filter(i => i !== action.id);
-      default:
-        return state;
-    }
-  }
-
-
-  const [favPhotos, toggleFavourite] = useReducer(favPhotoReducer, []);
-
-  // Setting up the photo that we have clicked on
-  function clickedPhotoReducer(state, action) {
-    switch (action.type) {
-      case "ADD":
-        state = action.info
-        return state;
-      case "REMOVE":
-        state = null;
-        return state;
-      default:
-        return state;
-    }
-  }
-
-  const [clickedPhoto, clickPhoto] = useReducer(clickedPhotoReducer, null);
-
-  // Setting up state and returning necessary values
-  return {
-    state: { favPhotos: favPhotos, clickedPhoto: clickedPhoto },
-    toggleFavourite,
-    clickPhoto
-  }
-}
-//////////////////////////////// APP ///////////////////////////////////////
-
-// export default function Application(props) {
-//   const {
-//     state,
-//     onPhotoSelect,
-//     updateToFavPhotoIds,
-//     onLoadTopic,
-//     onClosePhotoDetailsModal,
-//   } = useApplicationData();
-
-//   return (
-//     // React components
-//   );
-// }
   //--------------------------- STATES-----------------------------------//
 
   //Favourite Photos
-
-  // const state = [ 
-  const [photoId, setPhotoId] = useState(null);
+  const [favPhotos, setFavPhotos] = useState([]);
   const [selectedPhoto, setSelectedPhoto] = useState({});
   const [newPhotos, setNewPhotos] = useState(photos);
-// ]
-  //Modal - Passed down to PhotoListItem.jsx
-  const [modal, setModal] = useState({
-    isOpen: false,
-    id: null,
-    selected: false,
-    photo: null,
-  });
+  const [appTopics, setTopics] = useState(topics);
+  const [modal, setModal] = useState({ isOpen: false });
 
-  const [selected, setSelected] = useState(false);
+  const state = { favPhotos, selectedPhoto, newPhotos, appTopics, modal };
 
   //------------------------ FUNCTIONS-------------------------------------//
 
-  //Favourite Photos
-
-
-  // const isFavourite = (id) => {
-  //   return favPhotos.some((photo) => photo.id === id);
-  // };
-
-  //Modal
-  const toggleModal = (id = undefined) => {
-    if (id) {
-      const photo = [...newPhotos].find(photo => photo.id === id)
-      setSelectedPhoto(photo)
-    }
-    setModal((prevModal) => ({
-      ...prevModal,
-      isOpen: !prevModal.isOpen,
-    }));
+  /////////////////////////Favourite Photos functions///////////////////////
+ //main state : favPhotos
+  //fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar - used in FavBadge (can stay in favbadge?)
+  const isFavPhotoExist = () => {
+    return favPhotos.length > 0;
   };
+
+  //passed down to PhotoFavButton to fill it if image is in favPhotos (can stay there?)
+  const isFavourite = (id) => {
+    return favPhotos.some((photo) => photo.id === id);
+  };
+
+// Display favPhotos array whenever it changes (can stay on app.jsx)
+  const logFavPhotos = () =>
+    useEffect(() => {
+      console.log(favPhotos); 
+    }, [favPhotos]);
+
+  //When FavButton is clicked on a photo- photo object is saved to fav photos if not already saved, unsaves it if it is already saved
+  const handleFavButtonClick = (photoId) => {
+    setFavPhotos((prevFavPhotos) => {
+      const isPhotoFavourite = isFavourite(photoId);
+      if (isPhotoFavourite) {
+        return prevFavPhotos.filter((photo) => photo.id !== photoId);
+      } else {
+        const selectedPhoto = newPhotos.find((photo) => photo.id === photoId);
+        return selectedPhoto
+          ? [...prevFavPhotos, selectedPhoto]
+          : prevFavPhotos;
+      }
+    });
+  };
+
+  ///////////////////////////////Modal/////////////////////////////////////
+
+  //passed down to PhotoDetailsModal to close it
+  //Gets related photos of selected photo
   const getRelatedPhotos = () => {
     const relatedPhotos = [];
     if (Object.keys(selectedPhoto).length > 0) {
@@ -140,14 +67,76 @@ const useApplicationData = () => {
     return relatedPhotos;
   };
 
+  const closeModal = () => {
+    setModal((prevModal) => ({
+      ...prevModal,
+      isOpen: !prevModal.isOpen,
+    }));
+  };
+  
+  // opens the modal when photo is clicked  and sets photo current selected photo 
+  const handleOnImageClick = (id) => {
+    if (id) {
+      const photo = [...newPhotos].find((photo) => photo.id === id);
+      setSelectedPhoto(photo);
+    }
+    setModal((prevModal) => ({
+      ...prevModal,
+      isOpen: true,
+    }));
+  };
 
+//----------------------------------------------------------------------------//
 
-  function updateSelectedPhoto(photo_id, clonedPhotos) {
-    let selectedPhoto = {}
-    clonedPhotos.forEach((photo) => {
-      if (photo.id === photo_id) {
-        selectedPhoto = photo
-      }
-    });
-    return selectedPhoto
-  }
+  return {
+    state,
+    logFavPhotos,
+    isFavPhotoExist,
+    isFavourite,
+    closeModal,
+    handleOnImageClick,
+    getRelatedPhotos,
+    handleFavButtonClick,
+  };
+};
+
+export default useApplicationData;
+// const useApplicationData = () => {
+//   //Setting up favourite photos array
+//   function favPhotoReducer(state, action) {
+//     switch (action.type) {
+//       case "TOGGLE":
+//         if (!state.includes(action.id)) {
+//           return [...state, action.id];
+//         }
+//         return state.filter(i => i !== action.id);
+//       default:
+//         return state;
+//     }
+//   }
+
+//   const [favPhotos, toggleFavourite] = useReducer(favPhotoReducer, []);
+
+//   // Setting up the photo that we have clicked on
+//   function clickedPhotoReducer(state, action) {
+//     switch (action.type) {
+//       case "ADD":
+//         state = action.info
+//         return state;
+//       case "REMOVE":
+//         state = null;
+//         return state;
+//       default:
+//         return state;
+//     }
+//   }
+
+//   const [clickedPhoto, clickPhoto] = useReducer(clickedPhotoReducer, null);
+
+//   // Setting up state and returning necessary values
+//   return {
+//     state: { favPhotos: favPhotos, clickedPhoto: clickedPhoto },
+//     toggleFavourite,
+//     clickPhoto
+//   }
+// }
