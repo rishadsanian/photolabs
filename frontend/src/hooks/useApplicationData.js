@@ -7,8 +7,8 @@ import topics from "../mocks/topics";
 const initialState = {
   favPhotos: [],
   selectedPhoto: {},
-  appPhotos: photos,
-  appTopics: topics,
+  appPhotos: [],
+  appTopics: [],
   modal: false,
 };
 
@@ -40,12 +40,12 @@ const reducer = (state, action) => {
     case SET_PHOTO_DATA:
       return {
         ...state,
-        photos: action.photos, //photos is payload
+        appPhotos: action.photos, //photos is payload
       };
     case SET_TOPIC_DATA:
       return {
         ...state,
-        topics: action.topics, //topics is payload
+        appTopics: action.topics, //topics is payload
       };
 
     //favourites
@@ -91,6 +91,30 @@ const useApplicationData = () => {
   //set initalState
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  //------------------------------Loading Data-------------------------------//
+  const loadPhotos = () => useEffect(() => {
+    // Fetch photos data
+    fetch("/api/photos")
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: SET_PHOTO_DATA, photos: data });
+      })
+      .catch((error) => {
+        console.error("Error fetching photos:", error);
+      });
+  }, []);
+  
+  const loadTopics = () => useEffect(() => {
+    // Fetch topics data
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: SET_TOPIC_DATA, topics: data });
+      })
+      .catch((error) => {
+        console.error("Error fetching topics:", error);
+      });
+  }, []);
   //------------------------------FAVOURITES-------------------------------//
   //checks if there are any photos in favPhotos. used for fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar - used in FavBadge component
   const isFavPhotoExist = () => {
@@ -166,6 +190,8 @@ const useApplicationData = () => {
     handleOnImageClick,
     getRelatedPhotos,
     handleFavButtonClick,
+    loadPhotos,
+    loadTopics
   };
 };
 

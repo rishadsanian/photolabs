@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // --------------------------------STYLES IMPORT------------------------------//
 import "./App.scss";
@@ -8,7 +8,7 @@ import "./App.scss";
 import HomeRoute from "./components/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
-//====-----------------------------DATA IMPORT--------------------------------//
+//-----------------------------------DATA IMPORT----------------------------//
 
 import useApplicationData from "./hooks/useApplicationData";
 
@@ -28,11 +28,18 @@ const App = () => {
     getRelatedPhotos,
     handleFavButtonClick,
     logFavPhotos,
+    loadPhotos,
+    loadTopics,
   } = useApplicationData();
 
   //////////////////////////////////STATES//////////////////////////////////////
 
   const { favPhotos, selectedPhoto, appPhotos, appTopics, modal } = state;
+
+  ///////////////////////////////////LOAD DATA//////////////////////////////////
+
+  loadPhotos();
+  loadTopics(); 
 
   ///////////////////////////////////LOGS///////////////////////////////////////
   logFavPhotos();

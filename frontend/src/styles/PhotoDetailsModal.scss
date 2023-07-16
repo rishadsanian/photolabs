@@ -13,6 +13,9 @@
   overflow-y: scroll;
   border-radius: 12px;
 
+  &:focus {
+    outline: none;
+  }
   &__header {
     display: flex;
     justify-content: left;
@@ -112,4 +115,5 @@
     padding-top: 16px;
     padding-left:16px;
   }
+
 }
