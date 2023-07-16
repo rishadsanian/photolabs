@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 
+
 // -----------------------------DATA IMPORT--------------------------------//
 
 import photos from "./mocks/photos";
@@ -20,7 +21,7 @@ const App = () => {
 
   //Favourite Photos
   const [favPhotos, setFavPhotos] = useState([]);
-  const [photoId, setPhotoId] = useState(null);
+  // const [photoId, setPhotoId] = useState(null);
   const [selectedPhoto, setSelectedPhoto] = useState({});
   const [newPhotos, setNewPhotos] = useState(photos);
 
@@ -31,6 +32,7 @@ const App = () => {
     selected: false,
     photo: null,
   });
+
 
   const [selected, setSelected] = useState(false);
 
@@ -58,6 +60,7 @@ const App = () => {
       isOpen: !prevModal.isOpen,
     }));
   };
+  
   const getRelatedPhotos = () => {
     const relatedPhotos = [];
     if (Object.keys(selectedPhoto).length > 0) {
@@ -69,7 +72,7 @@ const App = () => {
     return relatedPhotos;
   };
 
-
+//Favourites
   const handleFavPhotoClick = (photo_id) => {
     const clonedPhotos = [...newPhotos];
     const selectedPhoto = updateSelectedPhoto(photo_id, clonedPhotos);
@@ -80,6 +83,7 @@ const App = () => {
     setNewPhotos(clonedPhotos);
   };
 
+  
   function updateSelectedPhoto(photo_id, clonedPhotos) {
     let selectedPhoto = {}
     clonedPhotos.forEach((photo) => {

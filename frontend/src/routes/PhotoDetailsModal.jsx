@@ -126,7 +126,7 @@ const PhotoDetailsModal = ({
             getRelatedPhotos={getRelatedPhotos}
 
             // isFavourite={isFavourite}
-            favPhotos={favPhotos}
+            // favPhotos={favPhotos}
             handleOnClick={(id) => handleOnClick(id)}
             selected={selected}
             setSelected={setSelected}

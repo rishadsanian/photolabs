@@ -39,9 +39,9 @@ const PhotoListItem = ({
   // console.log('photoListItem is favourite executed',isFavourite(id));
   // console.log('photolistItem selected',selected);
 
-  const onImageClick = () => {
-    handlePhotoClick(id, selected, photo);
-  };
+  // const onImageClick = () => {
+  //   handlePhotoClick(id, selected, photo);
+  // };
 
   //display one photo item
   return (
