@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
 
-
 // -----------------------------DATA IMPORT--------------------------------//
 
 import photos from "./mocks/photos";
@@ -33,8 +32,7 @@ const App = () => {
     photo: null,
   });
 
-
-  const [selected, setSelected] = useState(false);
+  // const [selected, setSelected] = useState(false);
 
   //------------------------ FUNCTIONS-------------------------------------//
 
@@ -52,15 +50,15 @@ const App = () => {
   //Modal
   const toggleModal = (id = undefined) => {
     if (id) {
-      const photo = [...newPhotos].find(photo => photo.id === id)
-      setSelectedPhoto(photo)
+      const photo = [...newPhotos].find((photo) => photo.id === id);
+      setSelectedPhoto(photo);
     }
     setModal((prevModal) => ({
       ...prevModal,
       isOpen: !prevModal.isOpen,
     }));
   };
-  
+
   const getRelatedPhotos = () => {
     const relatedPhotos = [];
     if (Object.keys(selectedPhoto).length > 0) {
@@ -72,38 +70,38 @@ const App = () => {
     return relatedPhotos;
   };
 
-//Favourites
+  //Favourites
   const handleFavPhotoClick = (photo_id) => {
     const clonedPhotos = [...newPhotos];
     const selectedPhoto = updateSelectedPhoto(photo_id, clonedPhotos);
     selectedPhoto.selected = !selectedPhoto.selected;
     setSelectedPhoto(selectedPhoto);
-    const favedPhotos = clonedPhotos.filter((photo) => !!photo.selected)
-    setFavPhotos(favedPhotos)
+    const favedPhotos = clonedPhotos.filter((photo) => !!photo.selected);
+    setFavPhotos(favedPhotos);
     setNewPhotos(clonedPhotos);
   };
 
-  
   function updateSelectedPhoto(photo_id, clonedPhotos) {
-    let selectedPhoto = {}
+    let selectedPhoto = {};
     clonedPhotos.forEach((photo) => {
       if (photo.id === photo_id) {
-        selectedPhoto = photo
+        selectedPhoto = photo;
       }
     });
-    return selectedPhoto
+    return selectedPhoto;
   }
 
   return (
     <div className="App">
       <HomeRoute
-        topics={topics}
         photos={newPhotos}
+        topics={topics}
         isFavPhotoExist={isFavPhotoExist}
         handleOnClick={(id) => handleFavPhotoClick(id)}
-        selected={selected}
-        setSelected={setSelected}
         handleOnImageClick={(id) => toggleModal(id)}
+        modal={modal}
+        // selected={selected}
+        // setSelected={setSelected}
       />
       {modal.isOpen && (
         <PhotoDetailsModal
@@ -114,6 +112,7 @@ const App = () => {
           getRelatedPhotos={getRelatedPhotos}
           photos={newPhotos}
           handleOnClick={(id) => handleFavPhotoClick(id)}
+          handleOnImageClick={(id) => toggleModal(id)}
         />
       )}
     </div>

@@ -14,18 +14,19 @@ import PhotoFavButton from "../components/PhotoFavButton";
 // setSelected={setSelected}
 
 const PhotoDetailsModal = ({
-  toggleModal,
-  photo,
-  getRelatedPhotos,
-  handleFavs,
-  handlePhotoClick,
-  // isFavourite,
-  modal,
-  // onClick,
-  selected,
-  setSelected,
+  handleOnClick,
   filteredPhoto,
-  handleOnClick
+  toggleModal,
+  getRelatedPhotos,
+  handleOnImageClick,
+  modal,
+  // photo,
+  // handleFavs,
+  // handlePhotoClick,
+  // isFavourite,
+  // onClick,
+  // selected,
+  // setSelected,
 }) => {
 
 
@@ -121,16 +122,17 @@ const PhotoDetailsModal = ({
           </p>
           <PhotoList
             photos={photos}
-            handleFavs={handleFavs}
-            handlePhotoClick={handlePhotoClick} 
-            getRelatedPhotos={getRelatedPhotos}
+            handleOnClick={(id) => handleOnClick(id)}
+            handleOnImageClick={(id) => handleOnImageClick(id)}
+            modal={modal}
+            // handlePhotoClick={handlePhotoClick} 
+            // handleFavs={handleFavs}
+            // getRelatedPhotos={getRelatedPhotos}
 
             // isFavourite={isFavourite}
             // favPhotos={favPhotos}
-            handleOnClick={(id) => handleOnClick(id)}
-            selected={selected}
-            setSelected={setSelected}
-            handleOnImageClick={(id) => handleOnImageClick(id)}
+            // selected={selected}
+            // setSelected={setSelected}
           />
         </section>
       </div>
