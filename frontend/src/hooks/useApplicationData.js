@@ -1,69 +1,112 @@
-import React, { useEffect, useState } from "react";
-
-// -----------------------------DATA IMPORT--------------------------------//
-
+import { useEffect, useReducer } from "react";
 import photos from "../mocks/photos";
 import topics from "../mocks/topics";
 
+const initialState = {
+  favPhotos: [],
+  selectedPhoto: {},
+  appPhotos: photos,
+  appTopics: topics,
+  modal: false,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    //can be used to live connect data from server to state
+    case "SET_DATA":
+      return {
+        ...state,
+        photos: action.photos, //photos is payload
+        topics: action.topics, //topics is payload
+      };
+
+    //favourites
+    case "ADD_PHOTO_TO_FAVORITES":
+      return {
+        ...state,
+        favPhotos: [...state.favPhotos, action.photo],
+      };
+    case "REMOVE_PHOTO_FROM_FAVORITES":
+      return {
+        ...state,
+        favPhotos: state.favPhotos.filter(
+          (photo) => photo.id !== action.photoId
+        ),
+      };
+
+    //selected photo
+    case "SET_SELECTED_PHOTO":
+      return {
+        ...state,
+        selectedPhoto: action.photo,
+      };
+
+    //modal
+    case "SET_MODAL_OPEN":
+      return {
+        ...state,
+        modal: true,
+      };
+    case "SET_MODAL_CLOSE":
+      return {
+        ...state,
+        modal: false,
+      };
+      //if error occurs throw new error
+    default:
+      throw new Error(`Failed to perform action type: ${action.type}`);
+  }
+};
+
 const useApplicationData = () => {
-  //--------------------------- STATES-----------------------------------//
+  //set initalState
+  const [state, dispatch] = useReducer(reducer, initialState);
 
-  //Favourite Photos
-  const [favPhotos, setFavPhotos] = useState([]);
-  const [selectedPhoto, setSelectedPhoto] = useState({});
-  const [appPhotos, setappPhotos] = useState(photos);
-  const [appTopics, setTopics] = useState(topics);
-  const [modal, setModal] = useState(false);
-
-  const state = { favPhotos, selectedPhoto, appPhotos, appTopics, modal };
-
-  //------------------------ FUNCTIONS-------------------------------------//
-
-  /////////////////////////Favourite Photos functions///////////////////////
-  //main state : favPhotos
+  //------------------------------FAVOURITES-------------------------------//
   //checks if there are any photos in favPhotos. used for fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar - used in FavBadge component
   const isFavPhotoExist = () => {
-    return favPhotos.length > 0;
+    return state.favPhotos.length > 0;
   };
 
   //checks if a photo is in favPhotos based on the photo id. passed down to PhotoFavButton to fill it if image is in favPhotos
   const isFavourite = (id) => {
-    return favPhotos.some((photo) => photo.id === id);
+    return state.favPhotos.some((photo) => photo.id === id);
   };
 
-  // logs favPhotos state. Display favPhotos array whenever it changes (can stay on app.jsx)
+  // logs favPhotos state. Display favPhotos array whenever it changes (used on app.jsx)
   const logFavPhotos = () =>
     useEffect(() => {
-      console.log(favPhotos);
-    }, [favPhotos]);
+      console.log(state.favPhotos);
+    }, [state.favPhotos]);
 
-    //When FavButton is clicked on a photo- photo object is saved to fav photos if not already saved, unsaves it if it is already saved
-    
-    const addPhotoToFavorites = (photoId) => {
-      const selectedPhoto = appPhotos.find((photo) => photo.id === photoId);
-      setFavPhotos((prevFavPhotos) => [...prevFavPhotos, selectedPhoto]);
-    };
-    
-    const removePhotoFromFavorites = (photoId) => {
-      setFavPhotos((prevFavPhotos) =>
-      prevFavPhotos.filter((photo) => photo.id !== photoId)
-      );
+  //When FavButton is clicked on a photo- photo object is saved to fav photos if not already saved, unsaves it if it is already saved
+  const addPhotoToFavorites = (photoId) => {
+    const selectedPhoto = state.appPhotos.find((photo) => photo.id === photoId);
+    dispatch({ type: "ADD_PHOTO_TO_FAVORITES", photo: selectedPhoto });
+  };
+
+  const removePhotoFromFavorites = (photoId) => {
+    dispatch({ type: "REMOVE_PHOTO_FROM_FAVORITES", photoId });
   };
 
   const handleFavButtonClick = (photoId) => {
-    isFavourite(photoId)
-      ? removePhotoFromFavorites(photoId)
-      : addPhotoToFavorites(photoId);
+    const isPhotoFavourite = isFavourite(photoId);
+    if (isPhotoFavourite) {
+      removePhotoFromFavorites(photoId);
+    } else {
+      addPhotoToFavorites(photoId);
+    }
   };
 
-  ///////////////////////////////Modal/////////////////////////////////////
+  //-----------------------------------MODAL------------------------------------//
 
   //Gets related photos of selected photo. passed into photolist in related photos section in the photodetails modal
+
   const getRelatedPhotos = () => {
     const relatedPhotos = [];
-    if (selectedPhoto) {
-      for (let photo in selectedPhoto.similar_photos) {
-        relatedPhotos.push(selectedPhoto.similar_photos[photo]);
+    if (state.selectedPhoto) {
+      for (let photo in state.selectedPhoto.similar_photos) {
+        relatedPhotos.push(state.selectedPhoto.similar_photos[photo]);
       }
     }
     return relatedPhotos;
@@ -71,19 +114,19 @@ const useApplicationData = () => {
 
   //closes modal (used in photodetails Modal section)
   const closeModal = () => {
-    setModal(false);
+    dispatch({ type: "SET_MODAL_CLOSE" });
   };
 
   // opens the modal when photo is clicked  and sets photo current selected photo used on photolist image items
   const handleOnImageClick = (id) => {
     if (id) {
-      const photo = [...appPhotos].find((photo) => photo.id === id);
-      setSelectedPhoto(photo);
+      const photo = [...state.appPhotos].find((photo) => photo.id === id);
+      dispatch({ type: "SET_SELECTED_PHOTO", photo });
     }
-    setModal(true);
+    dispatch({ type: "SET_MODAL_OPEN" });
   };
 
-  //----------------------------------------------------------------------------//
+  //--------------------------------------------------------------------------//
 
   return {
     state,
@@ -98,42 +141,3 @@ const useApplicationData = () => {
 };
 
 export default useApplicationData;
-// const useApplicationData = () => {
-//   //Setting up favourite photos array
-//   function favPhotoReducer(state, action) {
-//     switch (action.type) {
-//       case "TOGGLE":
-//         if (!state.includes(action.id)) {
-//           return [...state, action.id];
-//         }
-//         return state.filter(i => i !== action.id);
-//       default:
-//         return state;
-//     }
-//   }
-
-//   const [favPhotos, toggleFavourite] = useReducer(favPhotoReducer, []);
-
-//   // Setting up the photo that we have clicked on
-//   function clickedPhotoReducer(state, action) {
-//     switch (action.type) {
-//       case "ADD":
-//         state = action.info
-//         return state;
-//       case "REMOVE":
-//         state = null;
-//         return state;
-//       default:
-//         return state;
-//     }
-//   }
-
-//   const [clickedPhoto, clickPhoto] = useReducer(clickedPhotoReducer, null);
-
-//   // Setting up state and returning necessary values
-//   return {
-//     state: { favPhotos: favPhotos, clickedPhoto: clickedPhoto },
-//     toggleFavourite,
-//     clickPhoto
-//   }
-// }
