@@ -8,15 +8,10 @@ const HomeRoute = ({
   photos,
   topics,
   isFavPhotoExist,
-  handleOnClick,
+  handleFavButtonClick,
   handleOnImageClick,
   isFavourite,
-  // modal,
-  // handleFavs,
-  // handlePhotoClick,
-  // selected,
-  // setSelected,
-  // favPhotos,
+
 }) => {
   //RENDER
   return (
@@ -24,15 +19,10 @@ const HomeRoute = ({
       <TopNavigationBar topics={topics} isFavPhotoExist={isFavPhotoExist} />
       <PhotoList
         photos={photos}
-        handleOnClick={(id) => handleOnClick(id)}
+        handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
-        // modal = {modal}
-        // handleFavs={handleFavs}
-        // handlePhotoClick={handlePhotoClick}
-        // favPhotos={favPhotos}
-        // selected={selected}
-        // setSelected={setSelected}
+  
       />
     </div>
   );

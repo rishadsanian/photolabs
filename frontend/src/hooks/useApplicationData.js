@@ -22,7 +22,7 @@ const isFavPhotoExist = () => {
 };
 
 
-const handleFavPhotoClick = (photo_id) => {
+const handleFavButtonClick = (photo_id) => {
   const clonedPhotos = [...newPhotos];
   const selectedPhoto = updateSelectedPhoto(photo_id, clonedPhotos);
   selectedPhoto.selected = !selectedPhoto.selected;
