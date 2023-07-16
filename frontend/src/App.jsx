@@ -15,6 +15,9 @@ import useApplicationData from "./hooks/useApplicationData";
 //-----------------------------------TO DO-----------------------------------//
 //todo close modal if clicked on background
 //set modal image max width and height
+//add All next to topic list
+// favbadge click to show fav photos  
+//make modal bigger
 
 //////////////////////////////////// APP ///////////////////////////////////////
 
@@ -30,6 +33,7 @@ const App = () => {
     logFavPhotos,
     loadPhotos,
     loadTopics,
+    showPhotosByTopic
   } = useApplicationData();
 
   //////////////////////////////////STATES//////////////////////////////////////
@@ -54,6 +58,7 @@ const App = () => {
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
+        showPhotosByTopic={(id)=>showPhotosByTopic(id)}
       />
       {modal && (
         <PhotoDetailsModal

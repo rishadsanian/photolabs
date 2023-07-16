@@ -11,17 +11,22 @@ const HomeRoute = ({
   handleFavButtonClick,
   handleOnImageClick,
   isFavourite,
+  showPhotosByTopic
 
 }) => {
   //RENDER
   return (
     <div className="home-route">
-      <TopNavigationBar topics={topics} isFavPhotoExist={isFavPhotoExist} />
+      <TopNavigationBar 
+      topics={topics} 
+      isFavPhotoExist={isFavPhotoExist}
+      showPhotosByTopic={(id)=>showPhotosByTopic(id)} />
       <PhotoList
         photos={photos}
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
+       
   
       />
     </div>
