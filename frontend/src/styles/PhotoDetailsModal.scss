@@ -5,7 +5,7 @@
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
   position: absolute;
-  top: 55%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -40%);
   height: 80%;
@@ -19,9 +19,8 @@
     font-size: 18px;
     font-weight: 500;
     color: #1e1e1e;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    width: 90%;
+    margin: 0 24px 0 0;
+    width: 100%;
   }
 
   &__close-button {
@@ -40,6 +39,7 @@
 
   &__content {
     width: 90%;
+    margin-top: 0;
   }
 
   &__image-wrapper {
@@ -110,5 +110,6 @@
   &__related-photos {
     border-top: 1px solid lightgray;
     padding-top: 16px;
+    padding-left:16px;
   }
 }
