@@ -32,7 +32,7 @@ const App = () => {
 
   //////////////////////////////////STATES//////////////////////////////////////
 
-  const { favPhotos, selectedPhoto, newPhotos, appTopics, modal } = state;
+  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal } = state;
 
   ///////////////////////////////////LOGS///////////////////////////////////////
   logFavPhotos();
@@ -41,14 +41,14 @@ const App = () => {
   return (
     <div className="App">
       <HomeRoute
-        photos={newPhotos}
+        photos={appPhotos}
         topics={appTopics}
         isFavPhotoExist={isFavPhotoExist}
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
       />
-      {modal.isOpen && (
+      {modal && (
         <PhotoDetailsModal
           handleFavButtonClick={(id) => handleFavButtonClick(id)}
           selectedPhoto={selectedPhoto}
