@@ -130,7 +130,7 @@ const useApplicationData = () => {
   };
 
   //---------------------------LOADING TOPIC PHOTOS--------------------------//
-  //SHOWS ALL PHOTOS
+  //SHOWS ALL PHOTOS used in the logo and all in navbar
   const displayAllPhotos = async () => {
     try {
       const response = await axios.get("/api/photos");
