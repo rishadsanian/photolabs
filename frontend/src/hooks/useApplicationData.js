@@ -129,7 +129,7 @@ const useApplicationData = () => {
     }, []);
   };
 
-  //---------------------------LOADING TOPIC PHOTOS--------------------------//
+  //---------------------------DISPLAY ALL PHOTOS--------------------------//
   //SHOWS ALL PHOTOS used in the logo and all in navbar
   const displayAllPhotos = async () => {
     try {
