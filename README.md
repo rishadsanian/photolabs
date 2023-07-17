@@ -13,7 +13,6 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 
 <br>
 
-
 ## Features
 - Responsive, interactive and dynamic React application
 - Asycncrounous conectivity between client and server side through proxy setup
@@ -21,31 +20,23 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 - Ability to see all photos, photos by category, and related photos
 
 <br>
-<br>
+
 
 ## Images
 
-![Screenshot of Large screen interface](<https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%202023-06-22%20222503%20desktop.png?raw=true>)
+![Screenshot of Homepage](docs/photolabs_homepage.png)
+
 <br>
 
-![Screenshot of Mobile interface](<https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%20mobile.png?raw=true>)
+![Screenshot of Modal and Fav Button](docs/photolabs_modal.png)
+
 <br>
 
-![Screenshot of empty tweet submission](<https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%20error.png?raw=true>)
-<br>
-
-![Screenshots of all tweets Mobile interface](<https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%20mobile%20tweets.png?raw=true>)
-<br>
-
-![Screenshot of Desktop interface ](https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%20large%20screen.png?raw=true)
-<br>
-
-![Screenshot of Mobile interface too many characters alert](<https://github.com/rishadsanian/tweeter/blob/master/docs/Screenshot%20mobile%20errormessage%202.png?raw=true>)
-<br>
+![Screenshot of Notification icon](docs/photolabs_notification.png)
 
 
 <br>
-<br>
+
 
 
 ## Getting Started
@@ -55,7 +46,7 @@ To get started, install all dependencies for backend and server and start the fr
   - For more information on backend setup have a look at the README.md on `./backend`
   - For more information on frontend setup have a look at the README.md on `./frontend`
 
-<br>
+
 
 ### Setup
 
