@@ -8,7 +8,6 @@ const PhotoListItem = ({
   handleFavButtonClick,
   handleOnImageClick,
   isFavourite,
-
 }) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
@@ -28,7 +27,9 @@ const PhotoListItem = ({
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={() => {handleOnImageClick(id)}}
+        onClick={() => {
+          handleOnImageClick(id);
+        }}
       />
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />

@@ -121,7 +121,7 @@ const useApplicationData = () => {
     }, []);
 
   //---------------------------LOADING TOPIC PHOTOS--------------------------//
-//Shows photos by topic category - used in topiclistitem.jsx
+  //Shows photos by topic category - used in topiclistitem.jsx
   const showPhotosByTopic = (topicId) => {
     return fetch(`/api/topics/photos/${topicId}`)
       .then((response) => response.json())

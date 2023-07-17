@@ -1,10 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import '../styles/HomeRoute.scss';
+import "../styles/HomeRoute.scss";
 
-const HomeRoute = () => 
-  <div className="home-route">
-    {/* Insert React */}
-  </div>
+const HomeRoute = () => <div className="home-route"></div>;
 
 export default HomeRoute;

@@ -4,18 +4,14 @@ import "../styles/PhotoDetailsModal.scss";
 import PhotoList from "../components/PhotoList";
 import PhotoFavButton from "../components/PhotoFavButton";
 
-
 const PhotoDetailsModal = ({
   handleFavButtonClick,
   selectedPhoto,
   getRelatedPhotos,
   handleOnImageClick,
   isFavourite,
-  closeModal
+  closeModal,
 }) => {
-
-
-
   //? meansif it exists - destructure variables
   const id = selectedPhoto?.id;
   const imageSource = selectedPhoto?.urls?.regular;
@@ -23,10 +19,10 @@ const PhotoDetailsModal = ({
   const username = selectedPhoto?.user?.username;
   const location = selectedPhoto?.location;
 
-//to display similar photos
+  //to display similar photos
   const photos = getRelatedPhotos();
 
-// focus on modal when selected from homepage
+  // focus on modal when selected from homepage
   const modalRef = useRef(null);
   useEffect(() => {
     if (modalRef.current) {
@@ -34,13 +30,11 @@ const PhotoDetailsModal = ({
     }
   }, []);
 
-
   //scroll to top when  related image is clicked
   const handleRelatedImageClick = (id) => {
     handleOnImageClick(id);
     modalRef.current.scrollTo(0, 0);
   };
-
 
   return (
     // tab-index is used to focus on modal when clicked
@@ -87,7 +81,7 @@ const PhotoDetailsModal = ({
             id={id}
             className="photo-details-modal__fav-button"
           />
-    
+
           <img
             src={imageSource}
             className="photo-details-modal__image"
@@ -115,7 +109,7 @@ const PhotoDetailsModal = ({
           <PhotoList
             photos={photos}
             handleFavButtonClick={(id) => handleFavButtonClick(id)}
-            handleOnImageClick={handleRelatedImageClick}//added scroll to top
+            handleOnImageClick={handleRelatedImageClick} //added scroll to top
             isFavourite={isFavourite}
             id={id}
           />
