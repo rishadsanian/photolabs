@@ -36,11 +36,12 @@ const App = () => {
     loadPhotos,
     loadTopics,
     showPhotosByTopic,
+    showFavPhotos
   } = useApplicationData();
 
   //////////////////////////////////STATES//////////////////////////////////////
 
-  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal } = state;
+  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal} = state;
 
   ///////////////////////////////////LOAD DATA//////////////////////////////////
 
@@ -62,6 +63,7 @@ const App = () => {
         isFavourite={isFavourite}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
         // loadPhotos={loadPhotos}
+        showFavPhotos = {showFavPhotos}
       />
       {modal && (
         <PhotoDetailsModal

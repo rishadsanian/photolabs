@@ -13,6 +13,7 @@ const HomeRoute = ({
   isFavourite,
   showPhotosByTopic,
   loadPhotos,
+  showFavPhotos
 }) => {
   //RENDER
   return (
@@ -21,6 +22,7 @@ const HomeRoute = ({
         topics={topics}
         isFavPhotoExist={isFavPhotoExist}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
+        showFavPhotos={showFavPhotos}
         // loadPhotos={loadPhotos}
       />
       <PhotoList

@@ -3,11 +3,14 @@ import FavIcon from "./FavIcon";
 
 import "../styles/FavBadge.scss";
 
-export const FavBadge = ({ isFavPhotoExist }) => {
+export const FavBadge = ({ isFavPhotoExist, showFavPhotos }) => {
   //display alert set to boolean result of the function
   let displayAlert = isFavPhotoExist();
   return (
-    <div className="fav-badge">
+    <div
+      className="fav-badge"
+      onClick={() => isFavPhotoExist() && showFavPhotos()}
+    >
       <FavIcon
         width={25}
         height={25}

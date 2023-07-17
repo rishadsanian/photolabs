@@ -11,6 +11,7 @@ const TopNavigation = ({
   isFavPhotoExist,
   showPhotosByTopic,
   loadPhotos,
+  showFavPhotos
 }) => {
   return (
     <div className="top-nav-bar">
@@ -24,7 +25,7 @@ const TopNavigation = ({
           topics={topics}
           showPhotosByTopic={(id) => showPhotosByTopic(id)}
         />
-        <FavBadge isFavPhotoExist={isFavPhotoExist} />
+        <FavBadge isFavPhotoExist={isFavPhotoExist} showFavPhotos={showFavPhotos} />
       </div>
     </div>
   );

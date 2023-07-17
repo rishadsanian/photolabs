@@ -19,6 +19,7 @@ export const ACTIONS = {
   SET_SELECTED_PHOTO: "SET_SELECTED_PHOTO",
   SET_MODAL_OPEN: "SET_MODAL_OPEN",
   SET_MODAL_CLOSE: "SET_MODAL_CLOSE",
+  SHOW_FAVORITE_PHOTOS: "SHOW_FAVORITE_PHOTOS",
 };
 
 const {
@@ -29,6 +30,7 @@ const {
   SET_SELECTED_PHOTO,
   SET_MODAL_OPEN,
   SET_MODAL_CLOSE,
+  SHOW_FAVORITE_PHOTOS,
 } = ACTIONS;
 
 //-------------------------REDUCER SWITCH---------------------------//
@@ -77,6 +79,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         modal: false,
+      };
+
+    case SHOW_FAVORITE_PHOTOS:
+      return {
+        ...state,
+        appPhotos: state.favPhotos,
       };
     //if error occurs throw new error
     default:
@@ -134,6 +142,12 @@ const useApplicationData = () => {
       });
   };
   //------------------------------FAVOURITES-------------------------------//
+
+  //Shows fav photos when favbadge is clicked in navigation bar
+  const showFavPhotos = () => {
+    dispatch({ type: SHOW_FAVORITE_PHOTOS });
+  };
+
   //checks if there are any photos in favPhotos. used for fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar - used in FavBadge component
   const isFavPhotoExist = () => {
     return state.favPhotos.length > 0;
@@ -211,6 +225,7 @@ const useApplicationData = () => {
     loadPhotos,
     loadTopics,
     showPhotosByTopic,
+    showFavPhotos
   };
 };
 
