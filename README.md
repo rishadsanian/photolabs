@@ -16,7 +16,7 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 - Responsive, interactive and dynamic React application
 - Asycncrounous conectivity between client and server side through proxy setup
 - Custom SCSS microinteractions, state management, and enchanced UX features including modal, liking and saving photos, displaying notification alerts, hover and scroll effects.
-- Ability to see all photos, photos by category, and related photos
+- Ability to see all photos, photos by category, favourite photos and related photos
 
 <br>
 
@@ -89,7 +89,6 @@ npm start
 - Web-vitals version 2.1
 
 ## Future Features
-- View Favourite Photos
 - Search Bar
 - Add Photo
 - Dark Mode
