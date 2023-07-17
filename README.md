@@ -1,6 +1,5 @@
 
- ![PhotoLabs Logo](docs/logo.png)
-
+ ![PhotoLabs Logo](https://github.com/rishadsanian/photolabs/blob/main/docs/logo.png?raw=true)
 <br>
 
 ## Overview
@@ -24,15 +23,15 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 
 ## Images
 
-![Screenshot of Homepage](docs/photolabs_homepage.png)
+![Screenshot of Homepage](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_homepage.png?raw=true)
 
 <br>
 
-![Screenshot of Modal and Fav Button](docs/photolabs_modal.png)
+![Screenshot of Modal and Fav Button](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_modal.png?raw=true)
 
 <br>
 
-![Screenshot of Notification icon](docs/photolabs_notification.png)
+![Screenshot of Notification icon](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_notification.png?raw=true)
 
 
 <br>
