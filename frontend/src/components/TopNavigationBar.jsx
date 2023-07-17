@@ -1,7 +1,6 @@
 import React from "react";
 // style
 import "../styles/TopNavigationBar.scss";
-import "../styles/TopicListItem.scss";
 // components
 import TopicList from "./TopicList";
 import FavBadge from "./FavBadge";
@@ -10,17 +9,23 @@ const TopNavigation = ({
   topics,
   isFavPhotoExist,
   showPhotosByTopic,
-  loadPhotos,
-  showFavPhotos
+  showFavPhotos,
+  displayAllPhotos
 }) => {
   return (
     <div className="top-nav-bar">
       <div className="top-nav-bar__left">
-        <span className="top-nav-bar__logo">PhotoLabs</span>
+        <span 
+        className="top-nav-bar__logo" 
+        onClick={()=>displayAllPhotos()}
+        >PhotoLabs</span>
       </div>
 
       <div className="top-nav-bar__right">
-        {/* <span className="topic-list__item" on> All </span> */}
+        <span 
+        className="top-nav-bar__all"
+        onClick={()=>displayAllPhotos()}
+         > All </span>
         <TopicList
           topics={topics}
           showPhotosByTopic={(id) => showPhotosByTopic(id)}

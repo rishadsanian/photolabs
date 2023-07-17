@@ -12,8 +12,8 @@ const HomeRoute = ({
   handleOnImageClick,
   isFavourite,
   showPhotosByTopic,
-  loadPhotos,
-  showFavPhotos
+  showFavPhotos,
+  displayAllPhotos
 }) => {
   //RENDER
   return (
@@ -23,7 +23,8 @@ const HomeRoute = ({
         isFavPhotoExist={isFavPhotoExist}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
         showFavPhotos={showFavPhotos}
-        // loadPhotos={loadPhotos}
+        displayAllPhotos={displayAllPhotos}
+    
       />
       <PhotoList
         photos={photos}

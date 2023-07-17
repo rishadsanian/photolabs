@@ -36,7 +36,8 @@ const App = () => {
     loadPhotos,
     loadTopics,
     showPhotosByTopic,
-    showFavPhotos
+    showFavPhotos,
+    displayAllPhotos
   } = useApplicationData();
 
   //////////////////////////////////STATES//////////////////////////////////////
@@ -62,8 +63,8 @@ const App = () => {
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
-        // loadPhotos={loadPhotos}
         showFavPhotos = {showFavPhotos}
+        displayAllPhotos = {displayAllPhotos}
       />
       {modal && (
         <PhotoDetailsModal

@@ -62,6 +62,12 @@ const reducer = (state, action) => {
         ),
       };
 
+    case SHOW_FAVORITE_PHOTOS:
+      return {
+        ...state,
+        appPhotos: state.favPhotos,
+      };
+
     //selected photo
     case SET_SELECTED_PHOTO:
       return {
@@ -81,11 +87,6 @@ const reducer = (state, action) => {
         modal: false,
       };
 
-    case SHOW_FAVORITE_PHOTOS:
-      return {
-        ...state,
-        appPhotos: state.favPhotos,
-      };
     //if error occurs throw new error
     default:
       throw new Error(`Failed to perform action type: ${action.type}`);
@@ -128,18 +129,27 @@ const useApplicationData = () => {
     }, []);
   };
 
+  //---------------------------LOADING TOPIC PHOTOS--------------------------//
+  //SHOWS ALL PHOTOS
+  const displayAllPhotos = async () => {
+    try {
+      const response = await axios.get("/api/photos");
+      dispatch({ type: SET_PHOTO_DATA, photos: response.data });
+    } catch (error) {
+      console.error("Error fetching photos:", error);
+      throw error;
+    }
+  };
   //---------------------------LOADING TOPIC PHOTOS--------------------------
   // Shows photos by topic category - used in topiclistitem.jsx
-  const showPhotosByTopic = (topicId) => {
-    return axios
-      .get(`/api/topics/photos/${topicId}`)
-      .then((response) => {
-        dispatch({ type: SET_PHOTO_DATA, photos: response.data });
-      })
-      .catch((error) => {
-        console.error("Error fetching photos by topic:", error);
-        throw error;
-      });
+  const showPhotosByTopic = async (topicId) => {
+    try {
+      const response = await axios.get(`/api/topics/photos/${topicId}`);
+      dispatch({ type: SET_PHOTO_DATA, photos: response.data });
+    } catch (error) {
+      console.error("Error fetching photos by topic:", error);
+      throw error;
+    }
   };
   //------------------------------FAVOURITES-------------------------------//
 
@@ -183,7 +193,7 @@ const useApplicationData = () => {
     }
   };
 
-  //-----------------------------------MODAL------------------------------------//
+  //---------------------------------MODAL------------------------------------//
 
   //Gets related photos of selected photo. passed into photolist in related photos section in the photodetails modal
 
@@ -225,7 +235,8 @@ const useApplicationData = () => {
     loadPhotos,
     loadTopics,
     showPhotosByTopic,
-    showFavPhotos
+    showFavPhotos,
+    displayAllPhotos,
   };
 };
 
