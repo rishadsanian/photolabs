@@ -4,7 +4,7 @@
 
 ## Overview
 
-PhotoLabs is a image sharing and viewing platform. 
+PhotoLabs is an image sharing and viewing platform. 
 
 Using a cloned starter repo, PhotoLabs has been constructed using NODE with CSS/SCSS and REACT in the front-end, and with EXPRESS and PSQL for back-end.
 
