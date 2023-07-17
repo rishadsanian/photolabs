@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: center;
   background-color: white;
-  box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
+  box-shadow: 0 0 0 50vmax rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -11,7 +11,7 @@
   height: 80%;
   width: 55%;
   overflow-y: scroll;
-  overflow-x:hidden ;
+  overflow-x: hidden;
   border-radius: 12px;
   position: fixed;
   z-index: 9999;
@@ -19,6 +19,7 @@
   &:focus {
     outline: none;
   }
+
   &__header {
     display: flex;
     justify-content: left;
@@ -30,7 +31,6 @@
     position: sticky;
     top: 0;
     z-index: 1;
-    
   }
 
   &__close-button {
@@ -54,21 +54,23 @@
 
   &__image-wrapper {
     position: relative;
-    width: 60%;
-    height: auto;
+    width: 100%;
+    padding-top: 56.25%;
     margin: 0 auto;
     margin-top: 24px;
     margin-bottom: 16px;
+    overflow: hidden;
   }
-  
+
   &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    // border-radius: 8px;
-    // max-height: calc(100% - 100px); /* Adjust the value as needed */
-    // overflow: hidden; /* Hide any overflow content */
+    height: 100%;
+    object-fit: contain;
   }
-  
+
   &__fav-button {
     position: absolute;
     top: 16px;
@@ -122,7 +124,6 @@
   &__related-photos {
     border-top: 1px solid lightgray;
     padding-top: 16px;
-    padding-left:16px;
+    padding-left: 16px;
   }
-
 }
