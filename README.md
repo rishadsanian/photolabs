@@ -23,7 +23,7 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 
 ## Demo
 
-[Click to download Animated Demo](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_animation.gif?raw=true)
+[Animated Demo](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_animation.gif?raw=true)
 
 ![Animation of PhotoLabs App](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_animation.gif?raw=true)
 
