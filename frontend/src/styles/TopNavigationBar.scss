@@ -8,6 +8,10 @@
   -moz-box-shadow: 0 4px 6px -6px #222;
   box-shadow: 0 4px 6px -6px #222;
   height: 72px;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 3;
 }
 
 .top-nav-bar__logo {

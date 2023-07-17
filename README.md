@@ -1,5 +1,5 @@
 
-# <center> Photolabs
+ ![PhotoLabs Logo](docs/logo.png)
 
 <br>
 
@@ -7,16 +7,18 @@
 
 PhotoLabs is a image sharing and viewing platform. 
 
-Using a cloned starter repo, PhotoLabs has been constructed using NODE with CSS/SCSS, JS, REACT, and AXIOS in the front-end, and with EXPRESS, PSQL for back-end.
+Using a cloned starter repo, PhotoLabs has been constructed using NODE with CSS/SCSS and REACT in the front-end, and with EXPRESS and PSQL for back-end.
 
 This project has been completed by [Rishad Alam](https://github.com/rishadsanian) for the [Lighthouse Labs](https://www.lighthouselabs.ca/) Web Development Bootcamp.
 
+<br>
+
+
 ## Features
 - Responsive, interactive and dynamic React application
-- Asycncrounous conectivity between client and server side
-- Custom SCSS microinteractions, state management and enchanced UX features including Modal and Notification Alerts
+- Asycncrounous conectivity between client and server side through proxy setup
+- Custom SCSS microinteractions, state management, and enchanced UX features including modal, liking and saving photos, displaying notification alerts, hover and scroll effects.
 - Ability to see all photos, photos by category, and related photos
-- Abitlity to save liked photos and view them from homepage, modal, and related photos
 
 <br>
 <br>
