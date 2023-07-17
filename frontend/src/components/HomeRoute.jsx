@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../styles/HomeRoute.scss"; //style
 //components
 import TopNavigationBar from "./TopNavigationBar";
@@ -11,23 +11,23 @@ const HomeRoute = ({
   handleFavButtonClick,
   handleOnImageClick,
   isFavourite,
-  showPhotosByTopic
-
+  showPhotosByTopic,
+  loadPhotos,
 }) => {
   //RENDER
   return (
     <div className="home-route">
-      <TopNavigationBar 
-      topics={topics} 
-      isFavPhotoExist={isFavPhotoExist}
-      showPhotosByTopic={(id)=>showPhotosByTopic(id)} />
+      <TopNavigationBar
+        topics={topics}
+        isFavPhotoExist={isFavPhotoExist}
+        showPhotosByTopic={(id) => showPhotosByTopic(id)}
+        // loadPhotos={loadPhotos()}
+      />
       <PhotoList
         photos={photos}
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
-       
-  
       />
     </div>
   );

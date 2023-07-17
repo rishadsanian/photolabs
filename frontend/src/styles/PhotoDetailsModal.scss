@@ -5,13 +5,15 @@
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
   height: 80%;
   width: 55%;
   overflow-y: scroll;
+  overflow-x:hidden ;
   border-radius: 12px;
+  position: fixed;
 
   &:focus {
     outline: none;
@@ -24,6 +26,10 @@
     color: #1e1e1e;
     margin: 0 24px 0 0;
     width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
   }
 
   &__close-button {
@@ -53,13 +59,15 @@
     margin-top: 24px;
     margin-bottom: 16px;
   }
-
+  
   &__image {
     width: 100%;
     height: auto;
     // border-radius: 8px;
+    // max-height: calc(100% - 100px); /* Adjust the value as needed */
+    // overflow: hidden; /* Hide any overflow content */
   }
-
+  
   &__fav-button {
     position: absolute;
     top: 16px;
