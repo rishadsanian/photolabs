@@ -54,19 +54,21 @@
 
   &__image-wrapper {
     position: relative;
-    width: 60%;
-    height: auto;
+    width: 100%;
+    padding-top: 56.25%;
     margin: 0 auto;
     margin-top: 24px;
     margin-bottom: 16px;
+    overflow: hidden;
   }
 
   &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: auto;
-    // border-radius: 8px;
-    // max-height: calc(100% - 100px); /* Adjust the value as needed */
-    // overflow: hidden; /* Hide any overflow content */
+    height: 100%;
+    object-fit: contain;
   }
 
   &__fav-button {
