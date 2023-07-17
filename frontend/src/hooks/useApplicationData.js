@@ -1,6 +1,6 @@
 //------------------------------IMPORTS-------------------------------//
 import { useEffect, useReducer } from "react";
-import axios from 'axios';
+import axios from "axios";
 //------------------------------INITIAL STATE---------------------------//
 const initialState = {
   favPhotos: [],
@@ -93,12 +93,13 @@ const useApplicationData = () => {
   const loadPhotos = () => {
     useEffect(() => {
       // Fetch photos data
-      axios.get('/api/photos')
+      axios
+        .get("/api/photos")
         .then((response) => {
           dispatch({ type: SET_PHOTO_DATA, photos: response.data });
         })
         .catch((error) => {
-          console.error('Error fetching photos:', error);
+          console.error("Error fetching photos:", error);
           throw error;
         });
     }, []);
@@ -107,12 +108,13 @@ const useApplicationData = () => {
   const loadTopics = () => {
     useEffect(() => {
       // Fetch topics data
-      axios.get('/api/topics')
+      axios
+        .get("/api/topics")
         .then((response) => {
           dispatch({ type: SET_TOPIC_DATA, topics: response.data });
         })
         .catch((error) => {
-          console.error('Error fetching topics:', error);
+          console.error("Error fetching topics:", error);
           throw error;
         });
     }, []);
@@ -121,12 +123,13 @@ const useApplicationData = () => {
   //---------------------------LOADING TOPIC PHOTOS--------------------------
   // Shows photos by topic category - used in topiclistitem.jsx
   const showPhotosByTopic = (topicId) => {
-    return axios.get(`/api/topics/photos/${topicId}`)
+    return axios
+      .get(`/api/topics/photos/${topicId}`)
       .then((response) => {
         dispatch({ type: SET_PHOTO_DATA, photos: response.data });
       })
       .catch((error) => {
-        console.error('Error fetching photos by topic:', error);
+        console.error("Error fetching photos by topic:", error);
         throw error;
       });
   };

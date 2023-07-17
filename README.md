@@ -85,6 +85,7 @@ npm start
 - Jest
 - Supertest
 - React version 18.2
+- Axios
 - Sass version 1.59
 - Web-vitals version 2.1
 
