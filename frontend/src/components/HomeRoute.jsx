@@ -21,7 +21,7 @@ const HomeRoute = ({
         topics={topics}
         isFavPhotoExist={isFavPhotoExist}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
-        // loadPhotos={loadPhotos()}
+        loadPhotos={loadPhotos}
       />
       <PhotoList
         photos={photos}

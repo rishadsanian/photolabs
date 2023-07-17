@@ -19,6 +19,7 @@ import useApplicationData from "./hooks/useApplicationData";
 // favbadge click to show fav photos   
 //make modal bigger
 //make close button spring
+//dark mode
 
 //////////////////////////////////// APP ///////////////////////////////////////
 
@@ -60,7 +61,7 @@ const App = () => {
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
         showPhotosByTopic={(id)=>showPhotosByTopic(id)}
-        // loadPhotos={loadPhotos()}
+        loadPhotos={loadPhotos}
       />
       {modal && (
         <PhotoDetailsModal

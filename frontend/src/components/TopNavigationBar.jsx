@@ -10,7 +10,7 @@ const TopNavigation = ({ topics, isFavPhotoExist, showPhotosByTopic, loadPhotos 
   return (
     <div className="top-nav-bar">
       <div className="top-nav-bar__left">
-        <span className="top-nav-bar__logo">PhotoLabs</span>
+        <span className="top-nav-bar__logo" onClick={()=>loadPhotos()}>PhotoLabs</span>
       </div>
 
       <div className="top-nav-bar__right">
