@@ -21,11 +21,13 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 <br>
 
 
-## Demo and Images
+## Demo
 
-![Animation of PhotoLabs App](docs/photolabs_animation.gif)
+[Click for Animated Demo](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_animation.gif?raw=true)
 
 <br>
+
+## Images
 
 ![Screenshot of Homepage](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_homepage.png?raw=true)
 
@@ -40,7 +42,7 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 
 <br>
 
-![Screenshot of Favourite Photos](docs/photolabs_favourites.png)
+![Screenshot of Favourite Photos](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_favourites.png?raw=true)
 
 
 <br>
