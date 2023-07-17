@@ -15,13 +15,17 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 ## Features
 - Responsive, interactive and dynamic React application
 - Asycncrounous conectivity between client and server side through proxy setup
-- Custom SCSS microinteractions, state management, and enchanced UX features including modal, liking and saving photos, displaying notification alerts, hover and scroll effects.
-- Ability to see all photos, photos by category, favourite photos and related photos
+- Custom SCSS microinteractions, state management, and enchanced UX features including modal, saving favourite photos, displaying notification alerts, hover, and scroll effects.
+- Ability to see all photos, photos by category, favourite photos, and related photos
 
 <br>
 
 
-## Images
+## Demo and Images
+
+![Animation of PhotoLabs App](docs/photolabs_animation.gif)
+
+<br>
 
 ![Screenshot of Homepage](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_homepage.png?raw=true)
 
@@ -31,12 +35,15 @@ This project has been completed by [Rishad Alam](https://github.com/rishadsanian
 
 <br>
 
-![Screenshot of Notification icon](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_notification.png?raw=true)
+![Screenshot of Notification Icon](https://github.com/rishadsanian/photolabs/blob/main/docs/photolabs_notification.png?raw=true)
 
 
 <br>
 
+![Screenshot of Favourite Photos](docs/photolabs_favourites.png)
 
+
+<br>
 
 ## Getting Started
 
