@@ -1,8 +1,6 @@
 //------------------------------IMPORTS-------------------------------//
 import { useEffect, useReducer } from "react";
-import photos from "../mocks/photos";
-import topics from "../mocks/topics";
-
+import axios from 'axios';
 //------------------------------INITIAL STATE---------------------------//
 const initialState = {
   favPhotos: [],
@@ -91,45 +89,44 @@ const useApplicationData = () => {
   //set initalState
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  //------------------------------Loading Data-------------------------------//
-  const loadPhotos = () =>
+  // ------------------------------Loading Data-------------------------------
+  const loadPhotos = () => {
     useEffect(() => {
       // Fetch photos data
-      fetch("/api/photos")
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch({ type: SET_PHOTO_DATA, photos: data });
+      axios.get('/api/photos')
+        .then((response) => {
+          dispatch({ type: SET_PHOTO_DATA, photos: response.data });
         })
         .catch((error) => {
-          console.error("Error fetching photos:", error);
+          console.error('Error fetching photos:', error);
           throw error;
         });
     }, []);
+  };
 
-  const loadTopics = () =>
+  const loadTopics = () => {
     useEffect(() => {
       // Fetch topics data
-      fetch("/api/topics")
-        .then((response) => response.json())
-        .then((data) => {
-          dispatch({ type: SET_TOPIC_DATA, topics: data });
+      axios.get('/api/topics')
+        .then((response) => {
+          dispatch({ type: SET_TOPIC_DATA, topics: response.data });
         })
         .catch((error) => {
-          console.error("Error fetching topics:", error);
+          console.error('Error fetching topics:', error);
           throw error;
         });
     }, []);
+  };
 
-  //---------------------------LOADING TOPIC PHOTOS--------------------------//
-  //Shows photos by topic category - used in topiclistitem.jsx
+  //---------------------------LOADING TOPIC PHOTOS--------------------------
+  // Shows photos by topic category - used in topiclistitem.jsx
   const showPhotosByTopic = (topicId) => {
-    return fetch(`/api/topics/photos/${topicId}`)
-      .then((response) => response.json())
-      .then((data) => {
-        dispatch({ type: SET_PHOTO_DATA, photos: data });
+    return axios.get(`/api/topics/photos/${topicId}`)
+      .then((response) => {
+        dispatch({ type: SET_PHOTO_DATA, photos: response.data });
       })
       .catch((error) => {
-        console.error("Error fetching photos by topic:", error);
+        console.error('Error fetching photos by topic:', error);
         throw error;
       });
   };

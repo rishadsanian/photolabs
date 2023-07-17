@@ -5,7 +5,7 @@ import "./App.scss";
 
 // ---------------------------------ROUTES IMPORT-------------------------//
 
-import HomeRoute from "./components/HomeRoute";
+import HomeRoute from "./routes/HomeRoute";
 import PhotoDetailsModal from "./routes/PhotoDetailsModal";
 
 //-----------------------------------DATA IMPORT----------------------------//
@@ -61,7 +61,7 @@ const App = () => {
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
-        loadPhotos={loadPhotos}
+        // loadPhotos={loadPhotos}
       />
       {modal && (
         <PhotoDetailsModal
