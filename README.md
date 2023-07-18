@@ -10,7 +10,20 @@ Using a cloned starter repo, PhotoLabs has been constructed using NODE with CSS/
 
 This project has been completed by [Rishad Alam](https://github.com/rishadsanian) for the [Lighthouse Labs](https://www.lighthouselabs.ca/) Web Development Bootcamp.
 
+The goal of the project was to build a client-side application using the React view-layer library.
+
 <br>
+
+## Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Demo](#demo)
+- [Images](#images)
+- [Getting Started](#getting-started)
+- [Dependencies](#dependencies)
+- [Future Features](#future-features)
+- [Known Issues](#known-issues)
 
 ## Features
 - Responsive, interactive and dynamic React application
@@ -103,3 +116,7 @@ npm start
 - Search Bar
 - Add Photo
 - Dark Mode
+
+## Known Issues
+
+- While viewing favourite photos in the modal by clicking on the favourite photo, clinking link to similar photos or liking other similar photos in the modal breaks the app
