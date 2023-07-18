@@ -8,6 +8,7 @@ const initialState = {
   appPhotos: [],
   appTopics: [],
   modal: false,
+  allPhotos: [],
 };
 
 //---------------------------ACTIONS FOR REDUCER---------------------------//
@@ -20,6 +21,7 @@ export const ACTIONS = {
   SET_MODAL_OPEN: "SET_MODAL_OPEN",
   SET_MODAL_CLOSE: "SET_MODAL_CLOSE",
   SHOW_FAVORITE_PHOTOS: "SHOW_FAVORITE_PHOTOS",
+  SET_ALL_PHOTOS: "SET_ALL_PHOTOS",
 };
 
 const {
@@ -31,6 +33,7 @@ const {
   SET_MODAL_OPEN,
   SET_MODAL_CLOSE,
   SHOW_FAVORITE_PHOTOS,
+  SET_ALL_PHOTOS,
 } = ACTIONS;
 
 //-------------------------REDUCER SWITCH---------------------------//
@@ -87,6 +90,12 @@ const reducer = (state, action) => {
         modal: false,
       };
 
+    case SET_ALL_PHOTOS:
+      return {
+        ...state,
+        allPhotos: action.photos,
+      };
+
     //if error occurs throw new error
     default:
       throw new Error(`Failed to perform action type: ${action.type}`);
@@ -106,6 +115,7 @@ const useApplicationData = () => {
         .get("/api/photos")
         .then((response) => {
           dispatch({ type: SET_PHOTO_DATA, photos: response.data });
+          dispatch({ type: SET_ALL_PHOTOS, photos: response.data });
         })
         .catch((error) => {
           console.error("Error fetching photos:", error);
@@ -131,15 +141,10 @@ const useApplicationData = () => {
 
   //---------------------------DISPLAY ALL PHOTOS--------------------------//
   //SHOWS ALL PHOTOS used in the logo and all in navbar
-  const displayAllPhotos = async () => {
-    try {
-      const response = await axios.get("/api/photos");
-      dispatch({ type: SET_PHOTO_DATA, photos: response.data });
-    } catch (error) {
-      console.error("Error fetching photos:", error);
-      throw error;
-    }
+  const displayAllPhotos = () => {
+    dispatch({ type: SET_PHOTO_DATA, photos: state.allPhotos });
   };
+
   //---------------------------LOADING TOPIC PHOTOS--------------------------
   // Shows photos by topic category - used in topiclistitem.jsx
   const showPhotosByTopic = async (topicId) => {
@@ -193,12 +198,11 @@ const useApplicationData = () => {
     }
   };
 
-    //updates any changes to favphotos
-    // useEffect(() => {
-    //   dispatch({ type: SHOW_FAVORITE_PHOTOS })
-    //   console.log("Favorite photos state changed:", state.favPhotos);
-    // }, [state.favPhotos]);
-  
+  //updates any changes to favphotos
+  // useEffect(() => {
+  //   showFavPhotos()
+  //   console.log("Favorite photos state changed:", state.favPhotos);
+  // }, [state.favPhotos]);
 
   //---------------------------------MODAL------------------------------------//
 

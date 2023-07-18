@@ -8,6 +8,7 @@ const PhotoListItem = ({
   handleFavButtonClick,
   handleOnImageClick,
   isFavourite,
+  allPhotos,
 }) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
@@ -18,7 +19,7 @@ const PhotoListItem = ({
 
   //display one photo item
   return (
-    <li key={id} className="photo-list__item">
+    <li className="photo-list__item">
       <PhotoFavButton
         onClick={() => handleFavButtonClick(id)}
         isFavourite={isFavourite}

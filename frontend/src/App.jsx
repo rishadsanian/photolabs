@@ -42,7 +42,7 @@ const App = () => {
 
   //////////////////////////////////STATES//////////////////////////////////////
 
-  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal} = state;
+  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal, allPhotos} = state;
 
   ///////////////////////////////////LOAD DATA//////////////////////////////////
 
@@ -65,6 +65,7 @@ const App = () => {
         showPhotosByTopic={(id) => showPhotosByTopic(id)}
         showFavPhotos = {showFavPhotos}
         displayAllPhotos = {displayAllPhotos}
+        allPhotos={allPhotos}
       />
       {modal && (
         <PhotoDetailsModal

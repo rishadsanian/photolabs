@@ -13,7 +13,8 @@ const HomeRoute = ({
   isFavourite,
   showPhotosByTopic,
   showFavPhotos,
-  displayAllPhotos
+  displayAllPhotos,
+  allPhotos
 }) => {
   //RENDER
   return (
@@ -31,6 +32,7 @@ const HomeRoute = ({
         handleFavButtonClick={(id) => handleFavButtonClick(id)}
         handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
+        allPhotos={allPhotos}
       />
     </div>
   );
