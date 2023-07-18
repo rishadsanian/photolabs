@@ -9,6 +9,8 @@ const initialState = {
   appTopics: [],
   modal: false,
   allPhotos: [],
+  favViewMode: false
+ 
 };
 
 //---------------------------ACTIONS FOR REDUCER---------------------------//
@@ -22,6 +24,9 @@ export const ACTIONS = {
   SET_MODAL_CLOSE: "SET_MODAL_CLOSE",
   SHOW_FAVORITE_PHOTOS: "SHOW_FAVORITE_PHOTOS",
   SET_ALL_PHOTOS: "SET_ALL_PHOTOS",
+  TOGGLE_FAVS:"TOGGLE_FAVS"
+ 
+
 };
 
 const {
@@ -34,6 +39,7 @@ const {
   SET_MODAL_CLOSE,
   SHOW_FAVORITE_PHOTOS,
   SET_ALL_PHOTOS,
+  TOGGLE_FAVS
 } = ACTIONS;
 
 //-------------------------REDUCER SWITCH---------------------------//
@@ -96,6 +102,12 @@ const reducer = (state, action) => {
         allPhotos: action.photos,
       };
 
+    case TOGGLE_FAVS:
+      return {
+      ...state,
+      favViewMode: action.boolean
+    };
+
     //if error occurs throw new error
     default:
       throw new Error(`Failed to perform action type: ${action.type}`);
@@ -143,6 +155,8 @@ const useApplicationData = () => {
   //SHOWS ALL PHOTOS used in the logo and all in navbar
   const displayAllPhotos = () => {
     dispatch({ type: SET_PHOTO_DATA, photos: state.allPhotos });
+    dispatch({type: TOGGLE_FAVS, boolean:false})
+
   };
 
   //---------------------------LOADING TOPIC PHOTOS--------------------------
@@ -151,6 +165,8 @@ const useApplicationData = () => {
     try {
       const response = await axios.get(`/api/topics/photos/${topicId}`);
       dispatch({ type: SET_PHOTO_DATA, photos: response.data });
+      dispatch({type: TOGGLE_FAVS, boolean:false})
+
     } catch (error) {
       console.error("Error fetching photos by topic:", error);
       throw error;
@@ -161,6 +177,7 @@ const useApplicationData = () => {
   //Shows fav photos when favbadge is clicked in navigation bar
   const showFavPhotos = () => {
     dispatch({ type: SHOW_FAVORITE_PHOTOS });
+    dispatch({type: TOGGLE_FAVS, boolean:true})
   };
 
   //checks if there are any photos in favPhotos. used for fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar - used in FavBadge component
@@ -198,11 +215,10 @@ const useApplicationData = () => {
     }
   };
 
-  //updates any changes to favphotos
-  // useEffect(() => {
-  //   showFavPhotos()
-  //   console.log("Favorite photos state changed:", state.favPhotos);
-  // }, [state.favPhotos]);
+  //updates any changes to favphotos while viewing fav photos
+  useEffect(() => {if(state.favViewMode===true)
+    showFavPhotos();
+  }, [state.favPhotos, state.app]); 
 
   //---------------------------------MODAL------------------------------------//
 
