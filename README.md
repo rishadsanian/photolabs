@@ -119,4 +119,4 @@ npm start
 
 ## Known Issues
 
-- While viewing favourite photos in the modal by clicking on the favourite photo, clinking link to similar photos or liking other similar photos in the modal breaks the app
+- While viewing favourite photos in the modal by clicking on the favourite photo, clicking link to similar photos or liking other similar photos in the modal breaks the app
