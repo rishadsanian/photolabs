@@ -193,6 +193,13 @@ const useApplicationData = () => {
     }
   };
 
+    //updates any changes to favphotos
+    // useEffect(() => {
+    //   dispatch({ type: SHOW_FAVORITE_PHOTOS })
+    //   console.log("Favorite photos state changed:", state.favPhotos);
+    // }, [state.favPhotos]);
+  
+
   //---------------------------------MODAL------------------------------------//
 
   //Gets related photos of selected photo. passed into photolist in related photos section in the photodetails modal
