@@ -5,26 +5,20 @@ import PhotoListItem from "./PhotoListItem";
 
 const PhotoList = ({
   photos,
-  handleFavs,
-  handlePhotoClick,
-  onClick,
-  selected,
-  setSelected,
+  handleFavButtonClick,
+  handleOnImageClick,
   isFavourite,
-  favPhotos
+  allPhotos
 }) => {
   //Make an array with photolistitem and photo properties per index
   const photoItems = photos.map((photo) => (
     <PhotoListItem
       key={photo.id}
-      handleFavs={handleFavs}
       photo={photo}
-      handlePhotoClick={handlePhotoClick}
+      handleFavButtonClick={(id) => handleFavButtonClick(id)}
+      handleOnImageClick={(id) => handleOnImageClick(id)}
       isFavourite={isFavourite}
-      favPhotos={favPhotos}
-      // onClick={onClick}
-      selected={selected}
-      setSelected={setSelected}
+      allPhotos={allPhotos}
     />
   ));
 

@@ -1,129 +1,80 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 
-// -----------------------------DATA IMPORT--------------------------------//
-
-import photos from "./mocks/photos";
-import topics from "./mocks/topics";
-
-// ----------------------COMPONENTS/ROUTES IMPORT-------------------------//
-
-import HomeRoute from "./components/HomeRoute";
-import PhotoDetailsModal from "./routes/PhotoDetailsModal";
-
-// ----------------------------STYLES IMPORT-------------------------------//
+// --------------------------------STYLES IMPORT------------------------------//
 import "./App.scss";
 
-//////////////////////////////// APP ///////////////////////////////////////
+// ---------------------------------ROUTES IMPORT-------------------------//
+
+import HomeRoute from "./routes/HomeRoute";
+import PhotoDetailsModal from "./routes/PhotoDetailsModal";
+
+//-----------------------------------DATA IMPORT----------------------------//
+
+import useApplicationData from "./hooks/useApplicationData";
+
+//-----------------------------------TO DO-----------------------------------//
+//todo close modal if clicked on background
+//set modal image max width and height
+//add All next to topic list
+// favbadge click to show fav photos
+//make modal bigger
+//make close button spring
+//dark mode
+
+//////////////////////////////////// APP ///////////////////////////////////////
 
 const App = () => {
-  //--------------------------- STATES-----------------------------------//
+  const {
+    state,
+    isFavPhotoExist,
+    isFavourite,
+    closeModal,
+    handleOnImageClick,
+    getRelatedPhotos,
+    handleFavButtonClick,
+    logFavPhotos,
+    loadPhotos,
+    loadTopics,
+    showPhotosByTopic,
+    showFavPhotos,
+    displayAllPhotos
+  } = useApplicationData();
 
-  //Favourite Photos
-  const [favPhotos, setFavPhotos] = useState([]);
+  //////////////////////////////////STATES//////////////////////////////////////
 
-  //Modal - Passed down to PhotoListItem.jsx
-  const [modal, setModal] = useState({
-    isOpen: false,
-    id: null,
-    selected: false,
-    photo: null,
-  });
+  const { favPhotos, selectedPhoto, appPhotos, appTopics, modal, allPhotos} = state;
 
-  const [selected, setSelected] = useState(false);
+  ///////////////////////////////////LOAD DATA//////////////////////////////////
 
-  //------------------------ FUNCTIONS-------------------------------------//
-  
-  
-  //Favourite Photos
+  loadPhotos();
+  loadTopics();
 
-  //fav notification - triggered if favPhotos is not empty for notification icon in top navigation bar
-  const isFavPhotoExist = () => {
-    return favPhotos.length > 0;
-  };
+  ///////////////////////////////////LOGS///////////////////////////////////////
+  // logFavPhotos();
 
-  //add or remove from favourites function which will be performed on click based on selected status to be passed down photolist->photoitem
-  const handleFavs = (photo, selected) => {
-    !selected
-      ? setFavPhotos([...favPhotos, photo]) //if not already on list add to list
-      : setFavPhotos(favPhotos.filter((favPhoto) => favPhoto.id !== photo.id)); //if already on list, remove from list
-  };
-
-  const isFavourite = (id) => {
-    return favPhotos.some(photo => photo.id === id);
-  };
- 
-  // const [selected, setSelected] = useState((false));
-  // const onClick = () => {
-  //   setSelected(!selected);
-  //   handleFavs(photo, selected);
-  // };
-  //---------------------------------------------------------------------------
-
-  //Modal
-  const toggleModal = () => {
-    setModal((prevModal) => ({
-      ...prevModal,
-      isOpen: !prevModal.isOpen,
-    }));
-
-    // console.log("is modal open:", modal.isOpen);
-    // console.log(modal);
-  };
-
-
-  const handlePhotoClick = (id, selected, photo) => {
-   if (!modal.isOpen) {toggleModal()};
-    setModal((prev) => ({
-      ...prev,
-      id: id,
-      selected: selected,
-      photo: photo,
-    }));
-  };
-  
-  console.log('modal.photo: ',modal.photo);
-  const getRelatedPhotos = () => {
-    const relatedPhotos = [];
-    for (let photoKey in modal.photo.similar_photos) {
-      const photo = modal.photo.similar_photos[photoKey];
-      relatedPhotos.push(photo);
-  }
-  // console.log('related photos: ', relatedPhotos);
-  return relatedPhotos;
-};
-// -------------------------- logs-------------------------------------//
-  console.log("Favourite Photos:", favPhotos);
-  // console.log("modal", modal);
-
-  // -------------------------- Render-------------------------------------//
-
+  //////////////////////////////////Render//////////////////////////////////////
   return (
     <div className="App">
       <HomeRoute
-        topics={topics}
-        photos={photos}
+        photos={appPhotos}
+        topics={appTopics}
         isFavPhotoExist={isFavPhotoExist}
-        handleFavs={handleFavs}
-        handlePhotoClick={handlePhotoClick}
-        // onClick={onClick}
-        selected={selected}
-        setSelected={setSelected}
-        // favPhotos={favPhotos}
+        handleFavButtonClick={(id) => handleFavButtonClick(id)}
+        handleOnImageClick={(id) => handleOnImageClick(id)}
         isFavourite={isFavourite}
-        />
-      {modal.isOpen && (
+        showPhotosByTopic={(id) => showPhotosByTopic(id)}
+        showFavPhotos = {showFavPhotos}
+        displayAllPhotos = {displayAllPhotos}
+        allPhotos={allPhotos}
+      />
+      {modal && (
         <PhotoDetailsModal
-          toggleModal={toggleModal}
-          modal={modal}
-          photo={modal.photo}
-          handleFavs={handleFavs}
-          // onClick={onClick}
-          // selected={selected}
-          // favPhotos={favPhotos}
-          isFavourite={isFavourite}
-          handlePhotoClick={handlePhotoClick}
+          handleFavButtonClick={(id) => handleFavButtonClick(id)}
+          selectedPhoto={selectedPhoto}
           getRelatedPhotos={getRelatedPhotos}
-          photos={photos}
+          handleOnImageClick={(id) => handleOnImageClick(id)}
+          isFavourite={isFavourite}
+          closeModal={closeModal}
         />
       )}
     </div>
@@ -132,4 +83,4 @@ const App = () => {
 
 export default App;
 
-//--------------------------------------------------------------------------//
+////////////////////////////////////////////////////////////////////////////////

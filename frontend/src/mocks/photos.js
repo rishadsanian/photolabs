@@ -13,7 +13,7 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
   }
 
   const photo2 = {
@@ -31,7 +31,7 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
   }
 
   const photo3 = {
@@ -49,7 +49,7 @@
       "username": "exampleuser",
       "name": "Joe Example",
       "profile": `${process.env.PUBLIC_URL}/profile-1.jpg`
-    }
+    },
   }
 
   const photo4 = {

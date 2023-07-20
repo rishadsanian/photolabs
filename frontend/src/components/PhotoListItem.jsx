@@ -5,12 +5,10 @@ import PhotoFavButton from "./PhotoFavButton";
 
 const PhotoListItem = ({
   photo,
-  handleFavs,
-  handlePhotoClick,
+  handleFavButtonClick,
+  handleOnImageClick,
   isFavourite,
-  favPhotos,
-  selected,
-  setSelected
+  allPhotos,
 }) => {
   //destructure photo into variables needed for rendering
   const id = photo.id;
@@ -19,35 +17,21 @@ const PhotoListItem = ({
   const username = photo.user.username;
   const location = photo.location;
 
-  // State for selecting/unselecting fav button
-  
-  // const [selected, setSelected] = useState(isFavourite(id));
-  // const [selected, setSelected] = useState(false);
-  const onClick = () => {
-    setSelected(!selected);
-    handleFavs(photo, selected);
-
-    // console.log('photolistItem is favourite',isFavourite);
-    // console.log('photoListItem is favourite executed',isFavourite(id));
-    // console.log('photolistItem selected',selected);
-  };
-
-  // console.log('photoListItem is favourite executed',isFavourite(id));
-  // console.log('photolistItem selected',selected);
-
-  const onImageClick = () => {
-    handlePhotoClick(id, selected, photo);
-  };
-
   //display one photo item
   return (
-    <li key={id} className="photo-list__item">
-      <PhotoFavButton selected={selected} onClick={onClick} isFavourite={isFavourite} id={id}/>
+    <li className="photo-list__item">
+      <PhotoFavButton
+        onClick={() => handleFavButtonClick(id)}
+        isFavourite={isFavourite}
+        id={id}
+      />
       <img
         src={imageSource}
         className="photo-list__image"
-        onClick={onImageClick}
-      ></img>
+        onClick={() => {
+          handleOnImageClick(id);
+        }}
+      />
       <footer className="photo-list__footer">
         <img src={profile} className="photo-list__user-profile" />
         <section className="photo-list__user-details">

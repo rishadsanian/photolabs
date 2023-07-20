@@ -4,53 +4,45 @@ import "../styles/PhotoDetailsModal.scss";
 import PhotoList from "../components/PhotoList";
 import PhotoFavButton from "../components/PhotoFavButton";
 
-// photos={photos}
-// handleFavs={handleFavs}
-// handlePhotoClick={handlePhotoClick}
-// isFavourite={isFavourite}
-// favPhotos={favPhotos}
-// // onClick={onClick}
-// selected={selected}
-// setSelected={setSelected}
-
 const PhotoDetailsModal = ({
-  toggleModal,
-  photo,
+  handleFavButtonClick,
+  selectedPhoto,
   getRelatedPhotos,
-  handleFavs,
-  handlePhotoClick,
-  // isFavourite,
-  modal,
-  // onClick,
-  selected,
-  setSelected,
+  handleOnImageClick,
+  isFavourite,
+  closeModal,
 }) => {
-  const id = photo.id;
-  const imageSource = photo.urls.regular;
-  const profile = photo.user.profile;
-  const username = photo.user.username;
-  const location = photo.location;
+  //? meansif it exists - destructure variables
+  const id = selectedPhoto?.id;
+  const imageSource = selectedPhoto?.urls?.regular;
+  const profile = selectedPhoto?.user?.profile;
+  const username = selectedPhoto?.user?.username;
+  const location = selectedPhoto?.location;
 
+  //to display similar photos
   const photos = getRelatedPhotos();
-  const modalRef = useRef(null);
 
+  // focus on modal when selected from homepage
+  const modalRef = useRef(null);
   useEffect(() => {
     if (modalRef.current) {
       modalRef.current.focus();
     }
   }, []);
 
-  const onClick = () => {
-    setSelected(!selected);
-    handleFavs(photo, selected);
+  //scroll to top when  related image is clicked
+  const handleRelatedImageClick = (id) => {
+    handleOnImageClick(id);
+    modalRef.current.scrollTo(0, 0);
   };
 
   return (
+    // tab-index is used to focus on modal when clicked
     <div className="photo-details-modal" tabIndex={0} ref={modalRef}>
       <div className="photo-details-modal__header">
         <button
           className="photo-details-modal__close-button"
-          onClick={toggleModal}
+          onClick={closeModal}
         >
           <svg
             width="24"
@@ -84,10 +76,12 @@ const PhotoDetailsModal = ({
       <div className="photo-details-modal__content">
         <div className="photo-details-modal__image-wrapper">
           <PhotoFavButton
-            selected={selected}
-            onClick={onClick}
+            onClick={() => handleFavButtonClick(id)}
+            isFavourite={isFavourite}
+            id={id}
             className="photo-details-modal__fav-button"
           />
+
           <img
             src={imageSource}
             className="photo-details-modal__image"
@@ -104,7 +98,7 @@ const PhotoDetailsModal = ({
           <section className="photo-details-modal__photographer-info">
             <p className="photo-details-modal__user-info">{username}</p>
             <p className="photo-details-modal__user-location">
-              {location.city}, {location.country}
+              {location?.city}, {location?.country}
             </p>
           </section>
         </div>
@@ -114,9 +108,10 @@ const PhotoDetailsModal = ({
           </p>
           <PhotoList
             photos={photos}
-            handleFavs={handleFavs}
-            handlePhotoClick={handlePhotoClick}
-            getRelatedPhotos={getRelatedPhotos}
+            handleFavButtonClick={(id) => handleFavButtonClick(id)}
+            handleOnImageClick={handleRelatedImageClick} //added scroll to top
+            isFavourite={isFavourite}
+            id={id}
           />
         </section>
       </div>

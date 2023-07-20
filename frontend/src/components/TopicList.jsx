@@ -3,7 +3,7 @@ import React from "react";
 import "../styles/TopicList.scss";
 import TopicListItem from "./TopicListItem";
 
-const TopicList = ({ topics }) => {
+const TopicList = ({ topics, showPhotosByTopic }) => {
   //Make an array
   const topicItems = topics.map((topic) => (
     <TopicListItem
@@ -11,6 +11,7 @@ const TopicList = ({ topics }) => {
       id={topic.id}
       slug={topic.slug}
       title={topic.title}
+      showPhotosByTopic={(id) => showPhotosByTopic(id)}
     />
   ));
 

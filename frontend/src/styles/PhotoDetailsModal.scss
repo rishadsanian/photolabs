@@ -5,23 +5,32 @@
   background-color: white;
   box-shadow: 0 0 0 50vmax rgba(0,0,0,.5);
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
   height: 80%;
   width: 55%;
   overflow-y: scroll;
+  overflow-x:hidden ;
   border-radius: 12px;
+  position: fixed;
+  z-index: 9999;
 
+  &:focus {
+    outline: none;
+  }
   &__header {
     display: flex;
     justify-content: left;
     font-size: 18px;
     font-weight: 500;
     color: #1e1e1e;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    width: 90%;
+    margin: 0 24px 0 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    
   }
 
   &__close-button {
@@ -40,6 +49,7 @@
 
   &__content {
     width: 90%;
+    margin-top: 0;
   }
 
   &__image-wrapper {
@@ -50,13 +60,15 @@
     margin-top: 24px;
     margin-bottom: 16px;
   }
-
+  
   &__image {
     width: 100%;
     height: auto;
     // border-radius: 8px;
+    // max-height: calc(100% - 100px); /* Adjust the value as needed */
+    // overflow: hidden; /* Hide any overflow content */
   }
-
+  
   &__fav-button {
     position: absolute;
     top: 16px;
@@ -68,6 +80,7 @@
     flex-direction: row;
     font-size: 16px;
     margin: 24px 0;
+    align-items: center;
   }
 
   &__user-profile {
@@ -77,8 +90,8 @@
     margin-right: 8px;
     margin-left: 16px;
     padding-left: 0;
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
   }
 
   &__photographer-info {
@@ -89,13 +102,13 @@
   &__user-info {
     margin: 0 0 0 8px;
     font-weight: 700;
-    font-size: 12px;
+    font-size: 16px;
   }
 
   &__user-location {
     color: #838383;
     margin: 0 0 0 8px;
-    font-weight: 650;
+    font-weight: 600;
     font-size: 12px;
   }
 
@@ -109,5 +122,7 @@
   &__related-photos {
     border-top: 1px solid lightgray;
     padding-top: 16px;
+    padding-left:16px;
   }
+
 }
