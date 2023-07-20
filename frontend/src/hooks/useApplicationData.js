@@ -193,7 +193,7 @@ const useApplicationData = () => {
 
   //When FavButton is clicked on a photo- photo object is saved to fav photos if not already saved, unsaves it if it is already saved
   const addPhotoToFavorites = (photoId) => {
-    const selectedPhoto = state.appPhotos.find((photo) => photo.id === photoId);
+    const selectedPhoto = state.allPhotos.find((photo) => photo.id === photoId);
     dispatch({ type: ADD_PHOTO_TO_FAVORITES, photo: selectedPhoto });
   };
 
@@ -237,7 +237,7 @@ const useApplicationData = () => {
   // opens the modal when photo is clicked  and sets photo current selected photo used on photolist image items
   const handleOnImageClick = (id) => {
     if (id) {
-      const photo = [...state.appPhotos].find((photo) => photo.id === id);
+      const photo = state.allPhotos.find((photo) => photo.id === id);
       dispatch({ type: SET_SELECTED_PHOTO, photo });
     }
     dispatch({ type: SET_MODAL_OPEN });
