@@ -23,7 +23,7 @@ The goal of the project was to build a client-side application using the React v
 - [Getting Started](#getting-started)
 - [Dependencies](#dependencies)
 - [Future Features](#future-features)
-- [Known Issues](#known-issues)
+
 
 ## Features
 - Responsive, interactive and dynamic React application
