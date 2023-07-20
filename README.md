@@ -117,6 +117,3 @@ npm start
 - Add Photo
 - Dark Mode
 
-## Known Issues
-
-- While viewing favourite photos in the modal by clicking on the favourite photo, clicking link to similar photos or liking other similar photos in the modal breaks the app
