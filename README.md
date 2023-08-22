@@ -4,7 +4,7 @@
 
 ## Overview
 
-PhotoLabs is an image sharing and viewing platform. 
+PhotoLabs is an image-sharing and viewing platform. 
 
 Using a cloned starter repo, PhotoLabs has been constructed using NODE with CSS/SCSS and REACT in the front-end, and with EXPRESS and PSQL for back-end.
 
@@ -24,11 +24,31 @@ The goal of the project was to build a client-side application using the React v
 - [Dependencies](#dependencies)
 - [Future Features](#future-features)
 
+## Project Requirements
 
+### Functional Requirements
+The client-side consists of the development of a React single page application (SPA) called PhotoLabs
+The server and persistence layer given as follows:
+The data layer consists of PostgreSQL database
+The API server consists of a Node Express.js server application
+The server/persistence layer may require modifications for stretch goals
+The client will communicate with the API over HTTP using the JSON format
+
+### Behavioral Requirements
+A user can view photos from the homepage loaded from the API.
+The user can navigate to different photo categories, also called topics.
+The user can click on a photo to view a larger version of the photo and relevant / similar photos.
+The user can like a photo from anywhere within the application where the photo is displayed.
+The user can view a heart icon with a notification in the navigation if there are liked photos.
+The navigation will consist of different topics and heart icon.
+The client-side application will make API requests to load and persist data (i.e. relevant data is not lost after a session restarts, so after a browser refresh).
+
+### Out of scope additional improvements
+Enhanced UI/UX features include scrollbar customization, micro-interactions, scroll-animations, ability to see all photos. 
 ## Features
 - Responsive, interactive and dynamic React application
-- Asycncrounous conectivity between client and server side through proxy setup
-- Custom SCSS microinteractions, state management, and enchanced UX features including modal, saving favourite photos, displaying notification alerts, hover, and scroll effects.
+- Asynchronous connectivity between client and server-side through proxy setup
+- Custom SCSS micro-interactions, state management, and enhanced UX features including modal, saving favourite photos, displaying notification alerts, hover, and scroll effects.
 - Ability to see all photos, photos by category, favourite photos, and related photos
 
 <br>
